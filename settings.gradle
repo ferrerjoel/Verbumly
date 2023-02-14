@@ -5,12 +5,15 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-dependencyResolutionManagement {
+// Gradle 6.8 introduced central declaration of repositories, a new way to define repositories
+// Remove the dependencyResolutionManagement block to have your project work the old way.
+
+/*dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
     }
-}
+}*/
 rootProject.name = "EpicUntitledMobileGame"
 include ':app'
