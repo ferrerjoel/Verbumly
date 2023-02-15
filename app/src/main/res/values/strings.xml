@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">EpicUntitledMobileGame</string>
+
+    <string name="loginBtn">Login</string>
+    <string name="registerBtn">Register</string>
+    <string name="mailEt">E-mail</string>
+    <string name="nameEt">Nom</string>
+    <string name="passEt">Password</string>
+    <string name="dateTv">Date</string>
+
 </resources>
