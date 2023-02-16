@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         }
         btnRegister.setOnClickListener(){
             Toast.makeText(this, "Clicked register button",Toast.LENGTH_LONG).show()
+
         }
     }
 
