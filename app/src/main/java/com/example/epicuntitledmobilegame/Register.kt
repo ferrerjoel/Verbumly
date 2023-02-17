@@ -10,12 +10,13 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.*
 
+private const val TAG: String = "STATE"
 class Register : AppCompatActivity() {
-
-    private val TAG : String = "STATE"
 
     lateinit var auth: FirebaseAuth //FIREBASE AUTH
 
@@ -69,6 +70,7 @@ class Register : AppCompatActivity() {
                     Log.d(TAG, "createUserWithEmail:success")
                     val user = auth.currentUser
                     updateUI(user)
+
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
@@ -84,15 +86,39 @@ class Register : AppCompatActivity() {
     private fun updateUI(user: FirebaseUser?) {
         // Question mark = can be null
         if (user != null) {
-            var puntuation: Int = 0
-            var uidString: String = user.uid
-            var mailString: String = mailEt.text.toString()
-            var passString: String = passEt.text.toString()
-            var nameString: String = nameEt.text.toString()
-            var dateString: String = dateTv.text.toString()
-            // TODO: HERE SAVES THE CONTENT OF THE DATABASE
+            val score: Int = 0
+            val uidString: String = user.uid
+            val mailString: String = mailEt.text.toString()
+            val passString: String = passEt.text.toString()
+            val nameString: String = nameEt.text.toString()
+            val dateString: String = dateTv.text.toString()
+
+            // TODO: HERE SAVE THE CONTENT OF THE DATABASE
+
+            val playerData: HashMap<String, String> = HashMap<String, String>()
+
+            playerData["Uid"] = uidString
+            playerData["Email"] = mailString
+            playerData["Password"] = passString
+            playerData["Nom"] = nameString
+            playerData["Data"] = dateString
+            playerData["Score"] = score.toString()
+
+            // We create a cursor and we give it a name
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://epicuntitledmobilegame-default-rtdb.firebaseio.com/")
+            val reference: DatabaseReference = database.getReference("")
+
+            if(reference != null) {
+                // Create a child with the values of playerData
+                reference.child(uidString).setValue(playerData)
+                Toast.makeText(this, "User registered successfully", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Data base error", Toast.LENGTH_SHORT).show()
+            }
+            finish()
+
         } else {
-            Toast.makeText(this, "ERROR CREATE USER ",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error creating user ", Toast.LENGTH_SHORT).show()
         }
     }
 }
