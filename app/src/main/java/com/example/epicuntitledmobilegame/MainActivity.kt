@@ -5,18 +5,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class MainActivity : AppCompatActivity() {
 
-    //variables to check if user is loged
+    //variables to check if user is logged
     lateinit var auth: FirebaseAuth
-    var user:FirebaseUser? = null;
+    var user: FirebaseUser? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val tf = Typeface.createFromAsset(assets,"fonts/lemon_milk/LEMONMILK-Regular.otf")
 
-        //variables to check if user is loged
+        //variables to check if user is logged
         auth= FirebaseAuth.getInstance()
         user = auth.currentUser
 
@@ -39,11 +42,11 @@ class MainActivity : AppCompatActivity() {
         
     }
     override fun onStart(){
-        isLoged()
+        isLogged()
         super.onStart()
     }
     
-    private fun isLoged(){
+    private fun isLogged(){
         if(user != null){
             val intent = Intent(this, Menu::class.java)
             startActivity(intent)

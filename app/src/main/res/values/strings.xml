@@ -8,14 +8,15 @@
     <string name="passEt">Password</string>
     <string name="dateTv">Date</string>
 
-    <string name="logout">Log out</string>
-    <string name="myscore">Score</string>
-    <string name="score"> -- </string>
-    <string name="uid"> -- </string>
-    <string name="mail"> -- </string>
-    <string name="name"> -- </string>
-    <string name="menuTxt">MENÚ</string>
+
+    <string name="myscoreTv">Score</string>
+    <string name="scoreTv"> -- </string>
+    <string name="uidTv"> -- </string>
+    <string name="mailTv"> -- </string>
+    <string name="nameTv"> -- </string>
+    <string name="menuTv">MENU</string>
     <string name="playBtn">Play</string>
-    <string name="scoreBtn">Sco</string>
-    <string name="creditsBtn">Crèdits</string>
+    <string name="scoreBtn">Score</string>
+    <string name="creditsBtn">Credits</string>
+    <string name="logoutBtn">Log out</string>
 </resources>

@@ -1,25 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#58FA58"
+    android:layout_gravity="center"
     tools:context=".Menu">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="30dp">
-        <!-- BOTO DE ENTRAR -->
-        <Button
-            android:id="@+id/lgt"
+        <!-- Score of the player -->
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lgt"
+            android:id="@+id/myscoreTv"
+            android:text="@string/myscoreTv"
+            android:textSize="30sp"
+            android:gravity="center"/>
+        <!-- Score -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scoreTv"
+            android:text="@string/scoreTv"
+            android:gravity="center"/>
+        <!-- Placeholder -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:id="@+id/menu_placeholder"
+            android:src="@drawable/menu_placeholder" />
+        <!-- uid -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/uidTv"
+            android:text="@string/uidTv"
+            android:gravity="center"/>
+        <!-- mail -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mailTv"
+            android:text="@string/mailTv"
+            android:gravity="center"/>
+        <!-- name -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nameTv"
+            android:text="@string/nameTv"
+            android:gravity="center"/>
+        <!-- Play button -->
+        <Button
+            android:id="@+id/playBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/playBtn"
+            android:layout_marginTop="10dp"
+        />
+        <!-- Score button -->
+        <Button
+            android:id="@+id/scoreBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/scoreBtn"
+            android:layout_marginTop="10dp"
+        />
+        <!-- Credits button -->
+        <Button
+            android:id="@+id/creditsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/creditsBtn"
+            android:layout_marginTop="10dp"
+        />
+        <!-- Logout button -->
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/logoutBtn"
             android:layout_marginTop="10dp"
         />
     </LinearLayout>
-</RelativeLayout>
+</ScrollView>
