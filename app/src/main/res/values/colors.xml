@@ -10,6 +10,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="cian_200">#00C5B1</color>
+    <color name="gray_100">#2C2C2C</color>
     <color name="gray_200">#191919</color>
     <color name="gray_500">#151515</color>
     <color name="gray_700">#101010</color>
