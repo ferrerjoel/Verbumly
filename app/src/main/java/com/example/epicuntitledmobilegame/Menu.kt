@@ -64,6 +64,7 @@ class Menu : AppCompatActivity() {
         }
         playBtn.setOnClickListener(){
             Toast.makeText(this,"Play", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, LevelSelection::class.java))
         }
 
     }

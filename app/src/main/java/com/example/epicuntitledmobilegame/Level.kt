@@ -7,6 +7,7 @@ import android.widget.GridView
 import com.example.epicuntitledmobilegame.data.WordData
 import com.example.epicuntitledmobilegame.ui_elements.LetterBox
 
+const val WORD_LINES = 6
 class Level : AppCompatActivity() {
 
     lateinit var adapter : ArrayAdapter<LetterBox>
@@ -26,7 +27,11 @@ class Level : AppCompatActivity() {
         word = WordData.getRandomWord(letters)
 
         for (i in 1..letters) {
-            letterBoxArray.add(LetterBox())
+
+            for (j in 1 .. WORD_LINES) {
+                letterBoxArray.add(LetterBox(this, null))
+            }
+
         }
 
         // Initialize the adapter, with the array of text view
