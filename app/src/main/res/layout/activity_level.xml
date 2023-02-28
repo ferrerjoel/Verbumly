@@ -10,7 +10,7 @@
     tools:context=".Level">
 
     <!-- TODO: column count hard coded, change later -->
-    <androidx.recyclerview.widget.RecyclerView
+    <android.widget.GridView
         android:id="@+id/lettersView"
         android:layout_width="363dp"
         android:layout_height="683dp"
