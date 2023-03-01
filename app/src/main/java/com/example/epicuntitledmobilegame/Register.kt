@@ -1,7 +1,6 @@
 package com.example.epicuntitledmobilegame
 
 import android.graphics.Typeface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -9,12 +8,16 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.common.hash.Hashing
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.nio.charset.StandardCharsets
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 private const val TAG: String = "STATE"
 class Register : AppCompatActivity() {
@@ -97,14 +100,23 @@ class Register : AppCompatActivity() {
 
             // TODO: HERE SAVE THE CONTENT OF THE DATABASE
 
-            val playerData: HashMap<String, String> = HashMap<String, String>()
+//            val hashPass = Hashing.sha256()
+//                .hashString(passString, StandardCharsets.UTF_8)
+//                .toString()
+
+            val playerData: HashMap<String, Any> = HashMap<String, Any>()
+            val playerStats: HashMap<String, String> = HashMap<String, String>()
 
             playerData["Uid"] = uidString
             playerData["Email"] = mailString
             playerData["Password"] = passString
             playerData["Name"] = nameString
-            playerData["Data"] = dateString
-            playerData["MaxStreak"] = score.toString()
+            playerData["Date"] = dateString
+            playerData["Stats"] = playerStats
+
+            playerStats["MaxStreak"] = "0"
+            playerStats["CurrentStreak"] = "0"
+            playerStats["Plays"] = "0"
 
             // We create a cursor and we give it a name
             val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://epicuntitledmobilegame-default-rtdb.firebaseio.com/")

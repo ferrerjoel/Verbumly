@@ -4,7 +4,7 @@
     <string name="loginBtn">Login</string>
     <string name="registerBtn">Register</string>
     <string name="mailEt">E-mail</string>
-    <string name="nameEt">Nom</string>
+    <string name="nameEt">Username</string>
     <string name="passEt">Password</string>
     <string name="dateTv">Date</string>
 

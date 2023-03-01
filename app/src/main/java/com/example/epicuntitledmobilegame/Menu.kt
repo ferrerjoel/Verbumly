@@ -66,6 +66,10 @@ class Menu : AppCompatActivity() {
             Toast.makeText(this,"Play", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, LevelSelection::class.java))
         }
+        logoutBtn.setOnClickListener(){
+            Toast.makeText(this,"Logout", Toast.LENGTH_SHORT).show()
+            logout()
+        }
 
     }
 
@@ -74,8 +78,8 @@ class Menu : AppCompatActivity() {
         super.onStart()
     }
     private fun logout() {
-        auth.signOut() //tanca la sessi�
-        //va a la pantalla inicial
+        auth.signOut()
+        // Starts main screen
         val intent= Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()

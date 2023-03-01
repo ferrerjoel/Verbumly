@@ -1,14 +1,18 @@
 package com.example.epicuntitledmobilegame
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.common.hash.Hashing
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import java.nio.charset.StandardCharsets
+
 
 class Login : AppCompatActivity() {
 
@@ -46,6 +50,10 @@ class Login : AppCompatActivity() {
     }
 
     private fun playerLogIn(email: String, pass: String) {
+//        val passHash = Hashing.sha256()
+//            .hashString(pass, StandardCharsets.UTF_8)
+//            .toString()
+        Log.d("DEBUG",pass)
         auth.signInWithEmailAndPassword(email, pass)
             .addOnCompleteListener(this)
             { task ->

@@ -13,32 +13,44 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="30dp">
-
-        <!-- Mail input -->
-        <EditText
-            android:id="@+id/mailEt"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="@string/mailEt" />
+            android:layout_height="wrap_content">
+            <!-- Mail input -->
+            <EditText
+                android:id="@+id/mailEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="@string/mailEt" />
+        </com.google.android.material.textfield.TextInputLayout>
         <!-- Force mail input -->
-
-        <!-- Password input -->
-        <EditText
-            android:id="@+id/passEt"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="@string/passEt" />
+            app:passwordToggleEnabled="true">
+        <!-- Password input -->
+            <EditText
+                android:id="@+id/passEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:inputType="textPassword"
+                android:hint="@string/passEt" />
+        </com.google.android.material.textfield.TextInputLayout>
         <!-- Force password input -->
 
-
-        <!-- Player name input -->
-        <EditText
-            android:id="@+id/nameEt"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/nameEt" />
+            android:layout_height="wrap_content">
+        <!-- Player name input -->
+            <EditText
+                android:id="@+id/nameEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/nameEt" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Actual date -->
         <TextView
@@ -49,6 +61,7 @@
             android:hint="@string/dateTv"
             android:textSize="20sp"
             android:layout_marginTop="10dp"
+            android:textColor="@color/teal_200"
             />
 
         <!-- Enter button -->
