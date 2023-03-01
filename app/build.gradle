@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.epicuntitledmobilegame'
+    namespace 'com.example.verbumly'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.epicuntitledmobilegame"
+        applicationId "com.example.verbumly"
         minSdk 21
         targetSdk 33
         versionCode 1

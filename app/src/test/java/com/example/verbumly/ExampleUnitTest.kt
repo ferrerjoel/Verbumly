@@ -1,4 +1,4 @@
-package com.example.epicuntitledmobilegame
+package com.example.verbumly
 
 import org.junit.Test
 

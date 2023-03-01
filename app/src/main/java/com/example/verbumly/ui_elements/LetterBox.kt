@@ -1,4 +1,4 @@
-package com.example.epicuntitledmobilegame.ui_elements
+package com.example.verbumly.ui_elements
 
 import android.content.Context
 import android.graphics.Color
@@ -7,8 +7,7 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import com.example.epicuntitledmobilegame.R
-import android.view.ViewGroup.LayoutParams
+import com.example.verbumly.R
 
 
 // We use AppCompatTextView for compatibility for other android versions

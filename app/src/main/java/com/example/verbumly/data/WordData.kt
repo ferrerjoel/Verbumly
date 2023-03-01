@@ -1,4 +1,4 @@
-package com.example.epicuntitledmobilegame.data
+package com.example.verbumly.data
 
 import android.util.Log
 import kotlin.random.Random

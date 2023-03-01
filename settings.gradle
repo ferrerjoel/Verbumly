@@ -15,5 +15,5 @@ pluginManagement {
         mavenCentral()
     }
 }*/
-rootProject.name = "EpicUntitledMobileGame"
+rootProject.name = "Verbumly"
 include ':app'

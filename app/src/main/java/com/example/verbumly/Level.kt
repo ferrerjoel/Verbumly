@@ -1,15 +1,13 @@
-package com.example.epicuntitledmobilegame
+package com.example.verbumly
 
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.GridView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.epicuntitledmobilegame.data.WordData
-import com.example.epicuntitledmobilegame.ui_elements.LetterBox
-import com.example.epicuntitledmobilegame.ui_elements.LetterBoxAdapter
-import kotlin.random.Random
-import kotlin.random.nextInt
+import com.example.verbumly.data.WordData
+import com.example.verbumly.ui_elements.LetterBox
+import com.example.verbumly.ui_elements.LetterBoxAdapter
 
 
 const val WORD_LINES = 6

@@ -1,12 +1,10 @@
-package com.example.epicuntitledmobilegame
+package com.example.verbumly
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
-import android.widget.ImageView
-import com.bumptech.glide.Glide
 import java.util.Timer
 import kotlin.concurrent.schedule
 

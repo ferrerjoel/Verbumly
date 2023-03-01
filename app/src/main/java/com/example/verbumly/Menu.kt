@@ -1,4 +1,4 @@
-package com.example.epicuntitledmobilegame
+package com.example.verbumly
 
 import android.content.Intent
 import android.graphics.Typeface

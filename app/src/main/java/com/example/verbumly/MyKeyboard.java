@@ -1,4 +1,4 @@
-package com.example.epicuntitledmobilegame;
+package com.example.verbumly;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.inputmethod.InputConnection;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
-import org.json.JSONArray;
 
 public class MyKeyboard extends LinearLayout implements View.OnClickListener {
 

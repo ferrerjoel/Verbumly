@@ -1,4 +1,4 @@
-package com.example.epicuntitledmobilegame
+package com.example.verbumly
 
 import android.graphics.Typeface
 import android.os.Bundle
@@ -9,12 +9,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.common.hash.Hashing
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import java.nio.charset.StandardCharsets
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -119,7 +117,7 @@ class Register : AppCompatActivity() {
             playerStats["Plays"] = "0"
 
             // We create a cursor and we give it a name
-            val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://epicuntitledmobilegame-default-rtdb.firebaseio.com/")
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://verbumly-default-rtdb.firebaseio.com/")
             val reference: DatabaseReference = database.getReference("")
 
             if(reference != null) {
