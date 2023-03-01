@@ -4,33 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_200"
     android:minWidth="20dp"
     android:minHeight="20dp"
-    android:background="@color/gray_200"
     tools:context=".Level">
 
     <!-- TODO: column count hard coded, change later -->
     <android.widget.GridView
         android:id="@+id/lettersView"
-        android:layout_width="363dp"
-        android:layout_height="683dp"
-        android:columnCount="5"
+        android:layout_width="313dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="200dp"
+        android:columnWidth="48dp"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--    <TextView-->
-<!--        android:id="@+id/textView4"-->
-<!--        android:layout_width="64dp"-->
-<!--        android:layout_height="64dp"-->
-<!--        android:background="@drawable/border_letter"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textSize="48sp"-->
-<!--        android:textStyle="bold"-->
-<!--        tools:layout_editor_absoluteX="88dp"-->
-<!--        tools:layout_editor_absoluteY="120dp"-->
-<!--        tools:text="A" />-->
+    <!--        android:id="@+id/textView4"-->
+    <!--        android:layout_width="64dp"-->
+    <!--        android:layout_height="64dp"-->
+    <!--        android:background="@drawable/border_letter"-->
+    <!--        android:text="@string/app_name"-->
+    <!--        android:textAlignment="center"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:textSize="48sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        tools:layout_editor_absoluteX="88dp"-->
+    <!--        tools:layout_editor_absoluteY="120dp"-->
+    <!--        tools:text="A" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

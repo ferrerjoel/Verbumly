@@ -102,9 +102,9 @@ class Register : AppCompatActivity() {
             playerData["Uid"] = uidString
             playerData["Email"] = mailString
             playerData["Password"] = passString
-            playerData["Nom"] = nameString
+            playerData["Name"] = nameString
             playerData["Data"] = dateString
-            playerData["Score"] = score.toString()
+            playerData["MaxStreak"] = score.toString()
 
             // We create a cursor and we give it a name
             val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://epicuntitledmobilegame-default-rtdb.firebaseio.com/")

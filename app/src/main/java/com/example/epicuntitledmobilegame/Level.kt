@@ -40,6 +40,7 @@ class Level : AppCompatActivity() {
         adapter = LetterBoxAdapter(this, letterBoxArray)
 
         gridView = findViewById(R.id.lettersView)
+        gridView.numColumns = lettersNum
 
         gridView.adapter = adapter
     }
