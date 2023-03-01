@@ -1,5 +1,6 @@
 package com.example.epicuntitledmobilegame.data
 
+import android.util.Log
 import kotlin.random.Random
 
 object WordData {
@@ -14,9 +15,9 @@ object WordData {
     public fun getRandomWord(letters: Int): String {
 
         if (words.containsKey(letters)){
-            val randomPosition = Random.nextInt(0, words[letters]!!.length - 4 / letters) + letters
-
-            return words[letters]!!.substring(randomPosition, randomPosition + 4)
+            val randomPosition = Random.nextInt(0, (words[letters]!!.length  / letters))
+            Log.d("DEBUG", " " + words[letters]!!.length + " " + (words[letters]!!.length / letters) + " " + randomPosition + " " + randomPosition * letters + " " + randomPosition * letters + letters )
+            return words[letters]!!.substring(randomPosition * letters, randomPosition * letters + letters)
         }
 
         return ""
