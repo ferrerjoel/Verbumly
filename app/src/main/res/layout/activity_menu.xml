@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/myscoreTv"
+            android:textColor="@color/white"
             android:textSize="30sp" />
         <!-- Score -->
         <TextView
@@ -36,7 +37,7 @@
             android:id="@+id/menu_placeholder"
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:src="@drawable/menu_placeholder" />
+            android:src="@drawable/verbumly_logo" />
         <!-- uid -->
         <TextView
             android:id="@+id/uidTv"

@@ -9,14 +9,14 @@
     <string name="dateTv">Date</string>
 
 
-    <string name="myscoreTv">Score</string>
+    <string name="myscoreTv">Max streak</string>
     <string name="scoreTv"> -- </string>
     <string name="uidTv"> -- </string>
     <string name="mailTv"> -- </string>
     <string name="nameTv"> -- </string>
     <string name="menuTv">MENU</string>
     <string name="playBtn">Play</string>
-    <string name="scoreBtn">Score</string>
+    <string name="scoreBtn">Stats</string>
     <string name="creditsBtn">Credits</string>
     <string name="logoutBtn">Log out</string>
 </resources>
