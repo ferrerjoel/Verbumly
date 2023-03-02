@@ -9,6 +9,8 @@ import android.view.inputmethod.InputConnection;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.example.epicuntitledmobilegame.R;
+
 public class MyKeyboard extends LinearLayout implements View.OnClickListener {
 
     private Button q_key, w_key, e_key, r_key, t_key, y_key, u_key, i_key, o_key, p_key,
@@ -115,9 +117,13 @@ public class MyKeyboard extends LinearLayout implements View.OnClickListener {
         keyValues.put(R.id.b_key, "B");
         keyValues.put(R.id.n_key, "N");
         keyValues.put(R.id.m_key, "M");
-        keyValues.put(R.id.backspace_key, "Q");
-    }
-    public void onClick(View view){
+        keyValues.put(R.id.backspace_key, "U+0008");
 
+    }
+    @Override
+    public void onClick(View view){
+        if(inputConnection == null){
+            return;
+        }
     }
 }
