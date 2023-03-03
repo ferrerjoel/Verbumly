@@ -1,6 +1,7 @@
 package com.example.verbumly;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -55,7 +56,7 @@ public class MyKeyboard extends LinearLayout implements View.OnClickListener {
         p_key.setOnClickListener(this);
         a_key = (Button) findViewById(R.id.a_key);
         a_key.setOnClickListener(this);
-        s_key = (Button) findViewById(R.id.d_key);
+        s_key = (Button) findViewById(R.id.s_key);
         s_key.setOnClickListener(this);
         d_key = (Button) findViewById(R.id.d_key);
         d_key.setOnClickListener(this);
@@ -117,7 +118,6 @@ public class MyKeyboard extends LinearLayout implements View.OnClickListener {
         keyValues.put(R.id.b_key, "B");
         keyValues.put(R.id.n_key, "N");
         keyValues.put(R.id.m_key, "M");
-        keyValues.put(R.id.backspace_key, "U+0008");
 
     }
     @Override
@@ -125,5 +125,19 @@ public class MyKeyboard extends LinearLayout implements View.OnClickListener {
         if(inputConnection == null){
             return;
         }
+        if(view.getId() == R.id.backspace_key){
+            CharSequence selectedText = inputConnection.getSelectedText(0);
+            if(TextUtils.isEmpty(selectedText)){
+                inputConnection.deleteSurroundingText(1, 0);
+            }else{
+                inputConnection.commitText("", 1);
+            }
+        }else{
+            String value = keyValues.get(view.getId());
+            inputConnection.commitText(value, 1);
+        }
+    }
+    public void setInputConnection(InputConnection ic){
+        inputConnection = ic;
     }
 }
