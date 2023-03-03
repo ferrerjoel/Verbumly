@@ -9,7 +9,6 @@ import com.example.verbumly.data.WordData
 import com.example.verbumly.ui_elements.LetterBox
 import com.example.verbumly.ui_elements.LetterBoxAdapter
 
-
 const val WORD_LINES = 6
 class Level : AppCompatActivity() {
 
@@ -19,6 +18,10 @@ class Level : AppCompatActivity() {
     lateinit var word : String
     lateinit var adapter : ArrayAdapter<LetterBox>
     var lettersNum : Int = 0
+    var currentPosition : Int = 0
+    // When you jump from line this value has to be set to know when you can't return
+    // Fist element is the last position available where you can return, max is the max position where you can go
+    private lateinit var lastAndMaxArrayBoxPositions : Pair<Int, Int>
 
     val currentInput : String = ""
     val currentBoxPosition : Int = 0
@@ -29,6 +32,8 @@ class Level : AppCompatActivity() {
         setContentView(R.layout.activity_level)
 
         lettersNum = intent.getIntExtra("letters", 0)
+
+        lastAndMaxArrayBoxPositions = Pair(0, lettersNum)
 
         word = WordData.getRandomWord(lettersNum)
         Log.d("DEBUG", "CHOSEN WORD: $word")
@@ -51,7 +56,21 @@ class Level : AppCompatActivity() {
 
     }
 
-    private fun checkWord() {
+    public fun checkWord() {
 
+    }
+
+    public fun addLetter(letter : Char) {
+        if (lastAndMaxArrayBoxPositions.second > currentPosition){
+            letterBoxArray[currentPosition].letter = letter
+            currentPosition++
+        }
+    }
+
+    public fun deleteLetter() {
+        if (lastAndMaxArrayBoxPositions.second < currentPosition) {
+            letterBoxArray[currentPosition].letter = ' '
+            currentPosition--
+        }
     }
 }

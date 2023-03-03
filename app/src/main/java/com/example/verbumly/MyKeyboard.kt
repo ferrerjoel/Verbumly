@@ -149,6 +149,7 @@ class MyKeyboard @JvmOverloads constructor(
         } else {
             val value = keyValues[view.id]
             inputConnection!!.commitText(value, 1)
+            (level as Level).addLetter(value)
         }
     }
 
