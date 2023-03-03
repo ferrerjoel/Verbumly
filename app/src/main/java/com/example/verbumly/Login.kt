@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class Login : AppCompatActivity() {
@@ -48,10 +50,21 @@ class Login : AppCompatActivity() {
         }
 
         changePasswordBtn.setOnClickListener() {
-
+            val emailAddress = "user@example.com"
+            if (mailEt.getText().toString() != null) {
+                Firebase.auth.sendPasswordResetEmail(mailEt.getText().toString())
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Log.d("DEBUG", "Email sent.")
+                            Toast.makeText(
+                                this, "Reset password mail sent to your email", Toast.LENGTH_LONG
+                            ).show();
+                        }
+                    }
+            } else {
+                Toast.makeText(this, "No email selected", Toast.LENGTH_LONG).show();
+            }
         }
-
-
 
     }
 
@@ -59,10 +72,8 @@ class Login : AppCompatActivity() {
 //        val passHash = Hashing.sha256()
 //            .hashString(pass, StandardCharsets.UTF_8)
 //            .toString()
-        Log.d("DEBUG",pass)
-        auth.signInWithEmailAndPassword(email, pass)
-            .addOnCompleteListener(this)
-            { task ->
+        Log.d("DEBUG", pass)
+        auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val tx: String = "Welcome back $email"
                     Toast.makeText(this, tx, Toast.LENGTH_LONG).show()
@@ -70,8 +81,7 @@ class Login : AppCompatActivity() {
                     updateUI(user)
                 } else {
                     Toast.makeText(
-                        this, "Auth error",
-                        Toast.LENGTH_LONG
+                        this, "Auth error", Toast.LENGTH_LONG
                     ).show()
                 }
             }
