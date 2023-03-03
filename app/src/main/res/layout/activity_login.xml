@@ -51,6 +51,15 @@
             android:layout_marginTop="10dp"
             />
 
+        <!-- Submit button -->
+        <Button
+            android:id="@+id/changePasswordBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loginBtn"
+            android:layout_marginTop="10dp"
+            />
+
 
     </LinearLayout>
 </RelativeLayout>

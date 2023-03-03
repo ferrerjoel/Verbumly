@@ -7,6 +7,7 @@
     <string name="nameEt">Username</string>
     <string name="passEt">Password</string>
     <string name="dateTv">Date</string>
+    <string name="changePasswordBtn">I forgot my password</string>
 
 
     <string name="myscoreTv">Max streak</string>

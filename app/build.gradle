@@ -55,5 +55,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx'
     // https://mvnrepository.com/artifact/com.google.guava/guava
     // implementation 'com.google.guava:guava:31.1-jre'
+    // https://mvnrepository.com/artifact/com.squareup.picasso/picasso
+    implementation("com.squareup.picasso:picasso:2.71828")
+
 
 }
