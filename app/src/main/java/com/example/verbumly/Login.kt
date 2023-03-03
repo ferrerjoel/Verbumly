@@ -19,6 +19,7 @@ class Login : AppCompatActivity() {
     lateinit var mailEt: EditText
     lateinit var passEt: EditText
     lateinit var loginBtn: Button
+    lateinit var changePasswordBtn: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -27,6 +28,7 @@ class Login : AppCompatActivity() {
         mailEt = findViewById<EditText>(R.id.mailEt)
         passEt = findViewById<EditText>(R.id.passEt)
         loginBtn = findViewById<Button>(R.id.loginBtn)
+        changePasswordBtn = findViewById<Button>(R.id.changePasswordBtn)
 
         loginBtn.setOnClickListener() {
 
@@ -44,6 +46,12 @@ class Login : AppCompatActivity() {
                 playerLogIn(email, pass)
             }
         }
+
+        changePasswordBtn.setOnClickListener() {
+
+        }
+
+
 
     }
 
