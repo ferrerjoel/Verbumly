@@ -38,15 +38,6 @@
     <!--        tools:layout_editor_absoluteY="120dp"-->
     <!--        tools:text="A" />-->
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#c9c9f1"
-        android:layout_margin="50dp"
-        android:padding="5dp"
-        android:layout_alignParentTop="true"
-        />
     <com.example.verbumly.MyKeyboard
         android:id="@+id/keyboard"
         android:layout_width="match_parent"
