@@ -3,6 +3,7 @@ package com.example.verbumly
 import android.content.Context
 import android.text.TextUtils
 import android.util.AttributeSet
+import android.util.Log
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +44,8 @@ class MyKeyboard @JvmOverloads constructor(
     private var backspace_key: Button? = null
     private val keyValues = SparseArray<String>()
     private var inputConnection: InputConnection? = null
+
+    val activity: Level = context as Level
 
     init {
         init(context, attrs)
@@ -136,20 +139,22 @@ class MyKeyboard @JvmOverloads constructor(
     }
 
     override fun onClick(view: View) {
-        if (inputConnection == null) {
-            return
-        }
+//        if (inputConnection == null) {
+//            Log.d("DEBUG", "NULL input connection")
+//            return
+//        }
         if (view.id == R.id.backspace_key) {
-            val selectedText = inputConnection!!.getSelectedText(0)
-            if (TextUtils.isEmpty(selectedText)) {
-                inputConnection!!.deleteSurroundingText(1, 0)
-            } else {
-                inputConnection!!.commitText("", 1)
-            }
+//            val selectedText = inputConnection!!.getSelectedText(0)
+//            if (TextUtils.isEmpty(selectedText)) {
+//                inputConnection!!.deleteSurroundingText(1, 0)
+//            } else {
+//                inputConnection!!.commitText("", 1)
+//            }
+            activity.deleteLetter()
         } else {
             val value = keyValues[view.id]
-            inputConnection!!.commitText(value, 1)
-            (level as Level).addLetter(value)
+            // inputConnection!!.commitText(value, 1)
+            activity.addLetter(value.toCharArray()[0])
         }
     }
 

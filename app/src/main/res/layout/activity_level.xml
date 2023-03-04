@@ -37,12 +37,15 @@
     <!--        tools:layout_editor_absoluteX="88dp"-->
     <!--        tools:layout_editor_absoluteY="120dp"-->
     <!--        tools:text="A" />-->
-
+    <!-- TODO: HARDCODED POSITION -->
     <com.example.verbumly.MyKeyboard
         android:id="@+id/keyboard"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_width="413dp"
+        android:layout_height="207dp"
         android:layout_alignParentBottom="true"
-        />
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

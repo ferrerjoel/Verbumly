@@ -13,7 +13,7 @@ import com.example.verbumly.R
 // We use AppCompatTextView for compatibility for other android versions
 class LetterBox(context: Context, attrs: AttributeSet?) : AppCompatTextView(context, attrs) {
 
-    var letter: Char = 'A'
+    var letter: Char = ' '
 
     init {
         // This maybe should be done with a LayoutInflater

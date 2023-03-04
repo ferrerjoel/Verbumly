@@ -53,7 +53,6 @@ class Level : AppCompatActivity() {
         gridView.numColumns = lettersNum
 
         gridView.adapter = adapter
-
     }
 
     public fun checkWord() {
@@ -61,16 +60,23 @@ class Level : AppCompatActivity() {
     }
 
     public fun addLetter(letter : Char) {
+        Log.d("DEBUG", "Received letter")
         if (lastAndMaxArrayBoxPositions.second > currentPosition){
             letterBoxArray[currentPosition].letter = letter
+            // TODO: DELETE
+            letterBoxArray[currentPosition].setState(3)
+            Log.d("DEBUG", "Letter set " + letter + " " + letterBoxArray[currentPosition].letter)
             currentPosition++
+            // Refreshes the adapter data
+            adapter.notifyDataSetChanged()
         }
     }
 
     public fun deleteLetter() {
-        if (lastAndMaxArrayBoxPositions.second < currentPosition) {
-            letterBoxArray[currentPosition].letter = ' '
+        if (lastAndMaxArrayBoxPositions.first <= currentPosition) {
             currentPosition--
+            letterBoxArray[currentPosition].letter = ' '
+            adapter.notifyDataSetChanged()
         }
     }
 }
