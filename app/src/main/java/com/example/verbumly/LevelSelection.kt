@@ -20,6 +20,7 @@ class LevelSelection : AppCompatActivity() {
             val levelIntent = Intent(this, Level::class.java)
             levelIntent.putExtra("letters", 5)
             startActivity(levelIntent)
+            finish()
         }
     }
 }

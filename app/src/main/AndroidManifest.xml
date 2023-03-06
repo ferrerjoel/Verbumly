@@ -21,6 +21,9 @@
             android:name=".Login"
             android:exported="false" />
         <activity
+            android:name=".ResetPassword"
+            android:exported="false" />
+        <activity
             android:name=".Menu"
             android:exported="false" />
         <activity
