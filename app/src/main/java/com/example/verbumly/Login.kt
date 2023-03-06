@@ -50,22 +50,10 @@ class Login : AppCompatActivity() {
         }
 
         changePasswordBtn.setOnClickListener() {
-            val emailAddress = "user@example.com"
-            if (mailEt.getText().toString() != null) {
-                Firebase.auth.sendPasswordResetEmail(mailEt.getText().toString())
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d("DEBUG", "Email sent.")
-                            Toast.makeText(
-                                this, "Reset password mail sent to your email", Toast.LENGTH_LONG
-                            ).show();
-                        }
-                    }
-            } else {
-                Toast.makeText(this, "No email selected", Toast.LENGTH_LONG).show();
-            }
+            val intent = Intent(this, ResetPassword::class.java)
+            startActivity(intent)
+            finish()
         }
-
     }
 
     private fun playerLogIn(email: String, pass: String) {
