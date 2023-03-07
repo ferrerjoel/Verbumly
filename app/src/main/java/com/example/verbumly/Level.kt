@@ -24,7 +24,6 @@ class Level : AppCompatActivity() {
     private lateinit var lastAndMaxArrayBoxPositions : Pair<Int, Int>
 
     val currentInput : String = ""
-    val currentBoxPosition : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -56,8 +55,8 @@ class Level : AppCompatActivity() {
     }
 
     public fun checkWord() {
-        if (currentPosition == currentBoxPosition) {
-            lastAndMaxArrayBoxPositions = lastAndMaxArrayBoxPositions.copy(first = currentBoxPosition, second = currentBoxPosition + lettersNum)
+        if (currentPosition == lastAndMaxArrayBoxPositions.second) {
+            lastAndMaxArrayBoxPositions = lastAndMaxArrayBoxPositions.copy(first = lastAndMaxArrayBoxPositions.second, second = lastAndMaxArrayBoxPositions.second + lettersNum)
         }
     }
 
