@@ -56,7 +56,9 @@ class Level : AppCompatActivity() {
     }
 
     public fun checkWord() {
-
+        if (currentPosition == currentBoxPosition) {
+            lastAndMaxArrayBoxPositions = lastAndMaxArrayBoxPositions.copy(first = currentBoxPosition, second = currentBoxPosition + lettersNum)
+        }
     }
 
     public fun addLetter(letter : Char) {
