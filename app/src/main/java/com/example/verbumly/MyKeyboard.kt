@@ -139,22 +139,19 @@ class MyKeyboard @JvmOverloads constructor(
     }
 
     override fun onClick(view: View) {
-//        if (inputConnection == null) {
-//            Log.d("DEBUG", "NULL input connection")
-//            return
-//        }
-        if (view.id == R.id.backspace_key) {
-//            val selectedText = inputConnection!!.getSelectedText(0)
-//            if (TextUtils.isEmpty(selectedText)) {
-//                inputConnection!!.deleteSurroundingText(1, 0)
-//            } else {
-//                inputConnection!!.commitText("", 1)
-//            }
-            activity.deleteLetter()
-        } else {
-            val value = keyValues[view.id]
-            // inputConnection!!.commitText(value, 1)
-            activity.addLetter(value.toCharArray()[0])
+
+        when (view.id) {
+            R.id.backspace_key -> {
+                activity.deleteLetter()
+            }
+            R.id.enter_key -> {
+                activity.checkWord()
+            }
+            else -> {
+                val value = keyValues[view.id]
+                // inputConnection!!.commitText(value, 1)
+                activity.addLetter(value.toCharArray()[0])
+            }
         }
     }
 

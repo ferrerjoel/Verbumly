@@ -3,7 +3,9 @@ package com.example.verbumly.ui_elements
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
@@ -34,15 +36,16 @@ class LetterBox(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
      * 3: Blue / Green
      */
     fun setState(state : Int) {
-        setBackgroundColor(
+        setBackgroundResource(
             when (state) {
-                0 -> Color.TRANSPARENT
-                1 -> ContextCompat.getColor(context, R.color.gray_200)
-                2 -> ContextCompat.getColor(context, R.color.yellow_200)
-                3 -> ContextCompat.getColor(context, R.color.cian_200)
-                else -> ContextCompat.getColor(context, R.color.gray_200)
+                0 -> R.drawable.border_letter_cian
+                1 -> R.drawable.border_letter_cian
+                2 -> R.drawable.border_letter_cian
+                3 -> R.drawable.border_letter_cian
+                else -> R.drawable.border_letter_cian
             }
         )
+        Log.d("DEBUG", "COLOR: $state")
     }
 
 }
