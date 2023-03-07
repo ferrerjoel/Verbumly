@@ -44,8 +44,11 @@ class ResetPassword : AppCompatActivity() {
                         if (task.isSuccessful) {
                             Log.d("DEBUG", "Email sent.")
                             Toast.makeText(this, "Reset password mail sent to your email", Toast.LENGTH_LONG).show();
+                            val intent = Intent(this, Login::class.java)
+                            startActivity(intent)
+                            finish()
                         }else{
-                            Toast.makeText(this, "No email selected", Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, "Incorrect mail", Toast.LENGTH_LONG).show();
                         }
                     }
             }
