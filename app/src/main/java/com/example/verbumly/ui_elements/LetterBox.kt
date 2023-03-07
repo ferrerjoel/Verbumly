@@ -45,7 +45,7 @@ class LetterBox(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
                 else -> R.drawable.border_letter_cian
             }
         )
-        Log.d("DEBUG", "COLOR CHANGED")
+        Log.d("DEBUG", "COLOR: $state")
     }
 
 }
