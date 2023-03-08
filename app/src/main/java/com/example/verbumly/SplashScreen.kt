@@ -1,6 +1,7 @@
 package com.example.verbumly
 
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
@@ -11,7 +12,6 @@ import kotlin.concurrent.schedule
 class SplashScreen : AppCompatActivity() {
 
     val splashScreenDuration: Long = 3000;
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -20,8 +20,9 @@ class SplashScreen : AppCompatActivity() {
         supportActionBar?.hide()
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        changeAct()
+        var mp = MediaPlayer.create(applicationContext, R.raw.splash_audio);
+        mp.start();
+        changeAct();
     }
 
     private fun changeAct() {
@@ -32,5 +33,6 @@ class SplashScreen : AppCompatActivity() {
     fun startLogin(){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        //mp.stop();
     }
 }
