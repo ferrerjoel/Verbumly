@@ -116,7 +116,7 @@ class MyKeyboard @JvmOverloads constructor(
         keyValues.put(R.id.t_key, "T")
         keyValues.put(R.id.y_key, "Y")
         keyValues.put(R.id.u_key, "U")
-        keyValues.put(R.id.o_key, "I")
+        keyValues.put(R.id.i_key, "I")
         keyValues.put(R.id.o_key, "O")
         keyValues.put(R.id.p_key, "P")
         keyValues.put(R.id.a_key, "A")

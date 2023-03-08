@@ -25,8 +25,8 @@ class LetterBoxAdapter(context: Context, letterBoxArray: ArrayList<LetterBox>) :
             if (letterBox.isCorrect) {
                 view.setBackgroundResource(R.drawable.border_letter_cian)
             //    Log.d("DEBUG", "CORRECT")
-            } else if (view.isInTheWord){
-                view.setBackgroundResource(R.drawable.border_letter_cian)
+            } else if (letterBox.isInTheWord){
+                view.setBackgroundResource(R.drawable.border_letter_yellow)
             //    Log.d("DEBUG", "IN THE WORD")
             } else {
                 view.setBackgroundResource(R.drawable.border_letter)

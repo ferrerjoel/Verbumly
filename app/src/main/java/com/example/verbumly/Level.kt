@@ -24,6 +24,7 @@ class Level : AppCompatActivity() {
     private lateinit var lastAndMaxArrayBoxPositions : Pair<Int, Int>
 
     val currentInput : String = ""
+    lateinit var reversedWordArray : CharArray
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -32,11 +33,12 @@ class Level : AppCompatActivity() {
 
         lettersNum = intent.getIntExtra("letters", 0)
 
-        lastAndMaxArrayBoxPositions = Pair(0, lettersNum)
+        lastAndMaxArrayBoxPositions = Pair(0, lettersNum-1)
 
         word = WordData.getRandomWord(lettersNum)
         Log.d("DEBUG", "CHOSEN WORD: $word")
-
+        // This is useful for checking the positions of the letters and the word
+        reversedWordArray = word.reversed().toCharArray()
         letterBoxArray = ArrayList<LetterBox>()
 
         for (i in 1..lettersNum) {
@@ -55,27 +57,44 @@ class Level : AppCompatActivity() {
     }
 
     public fun checkWord() {
-        if (currentPosition == lastAndMaxArrayBoxPositions.second) {
+        var boxLetter : Char
+        Log.d("DEBUG", currentPosition.toString())
+        if (currentPosition == lastAndMaxArrayBoxPositions.second+1) {
+            for (i in lettersNum downTo  1) {
+                boxLetter = letterBoxArray[currentPosition - i].letter
+                Log.d("DEBUG", "Letter: $boxLetter")
+                if (boxLetter.lowercaseChar() == reversedWordArray[i-1]) {
+                    letterBoxArray[currentPosition - i].setLetterState(2)
+                    Log.d("DEBUG", "Correct position " + (currentPosition - i))
+                } else if (word.contains(boxLetter, ignoreCase = true)){
+                    Log.d("DEBUG", "Exists $currentPosition")
+                    letterBoxArray[currentPosition - i].setLetterState(1)
+                } else {
+                    letterBoxArray[currentPosition - i].setLetterState(0)
+                }
+            }
+
             lastAndMaxArrayBoxPositions = lastAndMaxArrayBoxPositions.copy(first = lastAndMaxArrayBoxPositions.second, second = lastAndMaxArrayBoxPositions.second + lettersNum)
+
+            adapter.notifyDataSetChanged()
         }
     }
 
     public fun addLetter(letter : Char) {
-        Log.d("DEBUG", "1--------------")
-        if (lastAndMaxArrayBoxPositions.second > currentPosition){
+
+        if (lastAndMaxArrayBoxPositions.second >= currentPosition){
             letterBoxArray[currentPosition].letter = letter
-            letterBoxArray[currentPosition].setLetterState(2)
-            Log.d("DEBUG", letterBoxArray[currentPosition].isCorrect.toString())
+            // Log.d("DEBUG", letterBoxArray[currentPosition].isCorrect.toString())
             // Log.d("DEBUG", "Letter set " + letter + " " + letterBoxArray[currentPosition].letter)
             currentPosition++
             // Refreshes the adapter data
             adapter.notifyDataSetChanged()
         }
-        Log.d("DEBUG", "2--------------")
+
     }
 
     public fun deleteLetter() {
-        if (lastAndMaxArrayBoxPositions.first <= currentPosition) {
+        if (lastAndMaxArrayBoxPositions.first < currentPosition-1) {
             currentPosition--
             letterBoxArray[currentPosition].letter = ' '
             adapter.notifyDataSetChanged()
