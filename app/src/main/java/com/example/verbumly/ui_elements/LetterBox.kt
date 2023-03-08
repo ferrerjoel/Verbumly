@@ -17,35 +17,51 @@ class LetterBox(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
 
     var letter: Char = ' '
 
+    var isCorrect = false
+    var isInTheWord = false
+
+
     init {
         // This maybe should be done with a LayoutInflater
         setBackgroundResource(R.drawable.border_letter)
         textAlignment = TEXT_ALIGNMENT_CENTER
-        width = (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56F, resources.displayMetrics).toInt())
-        height = (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56F, resources.displayMetrics).toInt())
+        width =
+            (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56F, resources.displayMetrics)
+                .toInt())
+        height =
+            (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56F, resources.displayMetrics)
+                .toInt())
         setTextSize(TypedValue.COMPLEX_UNIT_SP, 38F)
         setTextColor(ContextCompat.getColor(context, R.color.white))
         setTypeface(null, Typeface.BOLD)
     }
 
     /**
-     * Receives a number as the state of the color of the background of the letter box
-     * 0: No background
-     * 1: Gray (default)
-     * 2: Yellow
-     * 3: Blue / Green
+     * 0 -> It's not in the word
+     * 1 -> It's in the word
+     * 2 -> Correct position
      */
-    fun setState(state : Int) {
-        setBackgroundResource(
-            when (state) {
-                0 -> R.drawable.border_letter_cian
-                1 -> R.drawable.border_letter_cian
-                2 -> R.drawable.border_letter_cian
-                3 -> R.drawable.border_letter_cian
-                else -> R.drawable.border_letter_cian
+    fun setLetterState(state: Int) {
+        when (state) {
+            0 -> {
+                isCorrect = false
+                isInTheWord = false
             }
-        )
-        Log.d("DEBUG", "COLOR: $state")
+            1 -> {
+                isCorrect = false
+                isInTheWord = true
+            }
+            2 -> {
+                isCorrect = true
+                isInTheWord = false
+            }
+            else -> {
+                isCorrect = false
+                isInTheWord = false
+            }
+        }
+        // Log.d("DEBUG", "isCorrect $isCorrect isInTheWord $isInTheWord")
     }
+
 
 }

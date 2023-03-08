@@ -61,16 +61,17 @@ class Level : AppCompatActivity() {
     }
 
     public fun addLetter(letter : Char) {
-        Log.d("DEBUG", "Received letter")
+        Log.d("DEBUG", "1--------------")
         if (lastAndMaxArrayBoxPositions.second > currentPosition){
             letterBoxArray[currentPosition].letter = letter
-            // TODO: DELETE
-            letterBoxArray[currentPosition].setState(3)
-            Log.d("DEBUG", "Letter set " + letter + " " + letterBoxArray[currentPosition].letter)
+            letterBoxArray[currentPosition].setLetterState(2)
+            Log.d("DEBUG", letterBoxArray[currentPosition].isCorrect.toString())
+            // Log.d("DEBUG", "Letter set " + letter + " " + letterBoxArray[currentPosition].letter)
             currentPosition++
             // Refreshes the adapter data
             adapter.notifyDataSetChanged()
         }
+        Log.d("DEBUG", "2--------------")
     }
 
     public fun deleteLetter() {

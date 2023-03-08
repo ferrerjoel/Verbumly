@@ -8,8 +8,7 @@
     android:minWidth="20dp"
     android:minHeight="20dp"
     tools:context=".Level">
-
-    <!-- TODO: column count hard coded, change later -->
+    
     <android.widget.GridView
         android:id="@+id/lettersView"
         android:layout_width="313dp"
