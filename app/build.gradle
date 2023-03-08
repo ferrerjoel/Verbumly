@@ -57,6 +57,10 @@ dependencies {
     // implementation 'com.google.guava:guava:31.1-jre'
     // https://mvnrepository.com/artifact/com.squareup.picasso/picasso
     implementation("com.squareup.picasso:picasso:2.71828")
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.google.firebase:firebase-storage:20.1.0'
+    implementation("com.vanniktech:android-image-cropper:4.5.0")
 
 
 }
