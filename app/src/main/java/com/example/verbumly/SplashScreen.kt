@@ -11,16 +11,16 @@ import kotlin.concurrent.schedule
 
 class SplashScreen : AppCompatActivity() {
 
-    val splashScreenDuration: Long = 3000;
+    private val splashScreenDuration: Long = 3000;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash_screen)
         //Fullscreen
         supportActionBar?.hide()
 
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        var mp = MediaPlayer.create(applicationContext, R.raw.splash_audio);
+        this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        val mp = MediaPlayer.create(applicationContext, R.raw.splash_audio);
         mp.start();
         changeAct();
     }
@@ -30,7 +30,7 @@ class SplashScreen : AppCompatActivity() {
             startLogin()
         }
     }
-    fun startLogin(){
+    private fun startLogin(){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         //mp.stop();
