@@ -21,6 +21,7 @@
             android:theme="@style/Base.Theme.AppCompat"/> <!-- optional (needed if default theme has no action bar) -->
         <activity
             android:name=".Level"
+            android:screenOrientation="fullSensor"
             android:exported="false" />
         <activity
             android:name=".LevelSelection"
