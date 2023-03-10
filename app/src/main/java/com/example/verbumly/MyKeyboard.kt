@@ -10,6 +10,10 @@ import android.view.View
 import android.view.inputmethod.InputConnection
 import android.widget.Button
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
+import androidx.core.util.containsValue
+import androidx.core.util.forEach
+import androidx.core.util.keyIterator
 
 class MyKeyboard @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -151,6 +155,16 @@ class MyKeyboard @JvmOverloads constructor(
                 val value = keyValues[view.id]
                 // inputConnection!!.commitText(value, 1)
                 activity.addLetter(value.toCharArray()[0])
+            }
+        }
+    }
+
+    public fun grayOutKey(letter : Char) {
+        for (i in 0 until keyValues.size()){
+            val btn = findViewById<Button>(keyValues.keyAt(i))
+            if (btn.text == letter.toString()){
+                btn.setBackgroundColor(ContextCompat.getColor(context, R.color.gray_100))
+                break
             }
         }
     }
