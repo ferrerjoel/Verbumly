@@ -2,14 +2,18 @@ package com.example.verbumly
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.GridView
+import android.widget.LinearLayout
+import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.example.verbumly.data.WordData
 import com.example.verbumly.ui_elements.LetterBox
 import com.example.verbumly.ui_elements.LetterBoxAdapter
+
 
 const val WORD_LINES = 6
 
@@ -79,19 +83,16 @@ class Level : AppCompatActivity() {
             if (WordData.wordExists(inputtedWord)) {
                 for (i in lettersNum downTo 1) {
                     boxLetter = letterBoxArray[currentPosition - i].letter
-                    Log.d("DEBUG", "Letter: $boxLetter")
+//                    Log.d("DEBUG", "Letter: $boxLetter")
                     if (boxLetter.lowercaseChar() == reversedWordArray[i - 1]) {
                         letterBoxArray[currentPosition - i].setLetterState(2)
-                        Log.d("DEBUG", "Correct position " + (currentPosition - i))
+                        // Log.d("DEBUG", "Correct position " + (currentPosition - i))
                     } else if (word.contains(boxLetter, ignoreCase = true)) {
-                        Log.d("DEBUG", "Exists $currentPosition")
+                        // Log.d("DEBUG", "Exists $currentPosition")
                         letterBoxArray[currentPosition - i].setLetterState(1)
                     } else {
                         letterBoxArray[currentPosition - i].setLetterState(0)
-//                        val key = resources.getIdentifier(boxLetter.lowercase() + "_key","id", packageName)
-//                        Log.d("DEBUG", boxLetter + "_key")
-//                        findViewById<Button>(key).setBackgroundColor(ContextCompat.getColor(this, R.color.gray_200))
-                          findViewById<MyKeyboard>(R.id.keyboard).grayOutKey(boxLetter)
+                        findViewById<MyKeyboard>(R.id.keyboard).grayOutKey(boxLetter)
                     }
                 }
                 // Set the new margin of positions where the user can move on the array
@@ -102,8 +103,9 @@ class Level : AppCompatActivity() {
 
                 adapter.notifyDataSetChanged()
 
-                if (inputtedWord == word) {
-                    Log.d("DEBUG", "WORD FOUND :D")
+                if (inputtedWord.lowercase() == word) {
+                    Log.d("DEBUG", "HEY")
+                    showPopUp()
                 }
             }
         }
@@ -129,5 +131,23 @@ class Level : AppCompatActivity() {
             letterBoxArray[currentPosition].letter = ' '
             adapter.notifyDataSetChanged()
         }
+    }
+
+    private fun showPopUp() {
+
+        // inflate the layout of the popup window
+        val inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val popupView: View = inflater.inflate(R.layout.level_popup, null)
+
+        // create the popup window
+        val width = LinearLayout.LayoutParams.WRAP_CONTENT
+        val height = LinearLayout.LayoutParams.WRAP_CONTENT
+
+        val popupWindow = PopupWindow(popupView, width, height, false)
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+
+        popupWindow.showAtLocation(mainView, Gravity.CENTER, 0, 0)
     }
 }
