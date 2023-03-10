@@ -61,6 +61,7 @@ class Menu : AppCompatActivity() {
         }
         scoreBtn.setOnClickListener(){
             Toast.makeText(this,"Score", Toast.LENGTH_SHORT).show()
+            userProfile()
         }
         playBtn.setOnClickListener(){
             Toast.makeText(this,"Play", Toast.LENGTH_SHORT).show()
@@ -71,6 +72,12 @@ class Menu : AppCompatActivity() {
             logout()
         }
 
+    }
+
+    private fun userProfile() {
+        val intent= Intent(this, EditProfile::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun onStart() {
