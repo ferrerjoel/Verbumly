@@ -18,6 +18,7 @@ class Menu : AppCompatActivity() {
     lateinit var creditsBtn: Button
     lateinit var scoreBtn: Button
     lateinit var playBtn: Button
+    lateinit var leaderboardBtn: Button
     lateinit var myscoreTv: TextView
     lateinit var scoreTv: TextView
     lateinit var uidTv: TextView
@@ -36,6 +37,7 @@ class Menu : AppCompatActivity() {
         logoutBtn =findViewById<Button>(R.id.logoutBtn)
         creditsBtn =findViewById<Button>(R.id.creditsBtn)
         scoreBtn =findViewById<Button>(R.id.scoreBtn)
+        leaderboardBtn = findViewById<Button>(R.id.leaderboardBtn)
         playBtn =findViewById<Button>(R.id.playBtn)
 
         myscoreTv=findViewById(R.id.myscoreTv)
@@ -62,6 +64,10 @@ class Menu : AppCompatActivity() {
         scoreBtn.setOnClickListener(){
             Toast.makeText(this,"Score", Toast.LENGTH_SHORT).show()
             userProfile()
+        }
+        leaderboardBtn.setOnClickListener(){
+            Toast.makeText(this, "Leaderboard", Toast.LENGTH_SHORT).show()
+            startActivity((Intent(this, Leaderboard::class.java)))
         }
         playBtn.setOnClickListener(){
             Toast.makeText(this,"Play", Toast.LENGTH_SHORT).show()
