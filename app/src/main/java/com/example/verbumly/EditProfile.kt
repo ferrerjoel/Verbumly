@@ -1,12 +1,15 @@
 package com.example.verbumly
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -16,8 +19,10 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 
 class EditProfile : AppCompatActivity() {
@@ -43,62 +48,43 @@ class EditProfile : AppCompatActivity() {
         closeBtn = findViewById(R.id.btn_close);
         updateBtn = findViewById(R.id.btn_update);
         changeAvatarBtn = findViewById(R.id.change_avatar_btn)
+
+
         closeBtn.setOnClickListener {
             val intent = Intent(this@EditProfile, Menu::class.java)
             startActivity(intent)
             finish()
         }
-
+        var resultLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
+            Picasso.get().load(result).into(avatar)
+        }
         changeAvatarBtn.setOnClickListener(View.OnClickListener {
-            @Override
-            fun onClick(v : View){
-
-                selectImage();
-            }
+            resultLauncher.launch("image/*")
         });
         updateBtn.setOnClickListener(View.OnClickListener{
 
             uploadImage();
         })
+
+
     }
 
     private fun uploadImage() {
 
-        var formatter : SimpleDateFormat = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.GERMANY);
-        var now : Date = Date();
-        var name : String = formatter.format(now)
-        stRef = FirebaseStorage.getInstance().getReference("images/"+name);
+        // Get the data from an ImageView as bytes
+        avatar.isDrawingCacheEnabled = true
+        avatar.buildDrawingCache()
+        val bitmap = (avatar.drawable as BitmapDrawable).bitmap
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
 
-
-        stRef.putFile(imageUri).addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot>(){
-            fun onSucces(taskSnapshot : UploadTask.TaskSnapshot){
-                Toast.makeText(this@EditProfile, "Successfully uploaded avatar", Toast.LENGTH_SHORT).show()
-            }
-        }).addOnFailureListener(OnFailureListener {
-            fun onFailure(){
-                Toast.makeText(this@EditProfile, "Failed to upload avatar", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
-
-    fun selectImage() {
-
-        val i = Intent()
-        i.setType("image/*")
-        i.setAction(Intent.ACTION_GET_CONTENT)
-        startActivityForResult(i, 100);
-
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == 100 && data != null && data.data != null){
-
-            imageUri = data.data!!;
-            Picasso.get().load(imageUri).into(avatar)
-
+        var uploadTask = mountainsRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            // Handle unsuccessful uploads
+        }.addOnSuccessListener { taskSnapshot ->
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+            // ...
         }
     }
-
 }
