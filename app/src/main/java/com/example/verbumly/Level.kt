@@ -1,14 +1,14 @@
 package com.example.verbumly
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.GridView
-import android.widget.LinearLayout
-import android.widget.PopupWindow
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.verbumly.data.WordData
 import com.example.verbumly.ui_elements.LetterBox
@@ -63,6 +63,7 @@ class Level : AppCompatActivity() {
         gridView.numColumns = lettersNum
 
         gridView.adapter = adapter
+
     }
 
     /**
@@ -103,8 +104,7 @@ class Level : AppCompatActivity() {
 
                 adapter.notifyDataSetChanged()
 
-                if (inputtedWord.lowercase() == word) {
-                    Log.d("DEBUG", "HEY")
+                if (inputtedWord.lowercase() == word || currentPosition == letterBoxArray.size) {
                     showPopUp()
                 }
             }
@@ -125,6 +125,9 @@ class Level : AppCompatActivity() {
 
     }
 
+    /**
+     * Deletes the previous letter if possible
+     */
     fun deleteLetter() {
         if (lastAndMaxArrayBoxPositions.first <= currentPosition - 1) {
             currentPosition--
@@ -134,20 +137,39 @@ class Level : AppCompatActivity() {
     }
 
     private fun showPopUp() {
-
+        // The next line requires API 23, which is not supported in this project
+        //findViewById<View>(android.R.id.content).foreground.alpha = 255
         // inflate the layout of the popup window
         val inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val popupView: View = inflater.inflate(R.layout.level_popup, null)
 
-        // create the popup window
         val width = LinearLayout.LayoutParams.WRAP_CONTENT
         val height = LinearLayout.LayoutParams.WRAP_CONTENT
 
         val popupWindow = PopupWindow(popupView, width, height, false)
 
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
+        initializePopUpButtons(popupView, popupWindow)
 
-        popupWindow.showAtLocation(mainView, Gravity.CENTER, 0, 0)
+        popupView.findViewById<TextView>(R.id.popup_word).text = getString(R.string.popupWord, word)
+
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0)
+    }
+
+    /**
+     * Initialize the function of the buttons
+     */
+    private fun initializePopUpButtons(v : View, win : PopupWindow) {
+        v.findViewById<Button>(R.id.playAgainBtn).setOnClickListener(){
+            win.dismiss()
+            recreate()
+        }
+
+        v.findViewById<Button>(R.id.returnBtn).setOnClickListener(){
+            returnToMenu()
+        }
+    }
+
+    private fun returnToMenu(){
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }

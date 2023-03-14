@@ -20,4 +20,8 @@
     <string name="scoreBtn">Stats</string>
     <string name="creditsBtn">Credits</string>
     <string name="logoutBtn">Log out</string>
+    <!-- Popup -->
+    <string name="popupWord">The word was: %1$s</string>
+    <string name="popupPlayAgain">Play again</string>
+    <string name="popupReturn">Return to menu</string>
 </resources>
