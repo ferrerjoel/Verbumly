@@ -72,7 +72,7 @@ class Level : AppCompatActivity() {
         var boxLetter: Char
         var inputtedWord = ""
         // If we don't do this check here we may get a out of bounds error (because the word is not completed, for example)
-        if (currentPosition == lastAndMaxArrayBoxPositions.second + 1 && currentPosition < letterBoxArray.size) {
+        if (currentPosition == lastAndMaxArrayBoxPositions.second + 1 && currentPosition <= letterBoxArray.size) {
             // Get the inputted word on the corresponding line
             for (i in lettersNum downTo 1) {
                 inputtedWord += letterBoxArray[currentPosition - i].letter
