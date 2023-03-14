@@ -7,8 +7,7 @@
     android:background="@color/gray_200"
     android:minWidth="20dp"
     android:minHeight="20dp"
-    tools:context=".Level"
-    android:foreground="@drawable/popup_full_background">
+    tools:context=".Level">
     
     <android.widget.GridView
         android:id="@+id/lettersView"

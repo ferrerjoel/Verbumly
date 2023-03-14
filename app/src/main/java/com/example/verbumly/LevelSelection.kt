@@ -8,11 +8,11 @@ import android.widget.Toast
 
 class LevelSelection : AppCompatActivity() {
 
-    lateinit var fourLettersBtn: Button
-    lateinit var fiveLettersBtn: Button
-    lateinit var sixLettersBtn: Button
-    lateinit var sevenLettersBtn: Button
-    lateinit var eightLettersBtn: Button
+    private lateinit var fourLettersBtn: Button
+    private lateinit var fiveLettersBtn: Button
+    private lateinit var sixLettersBtn: Button
+    private lateinit var sevenLettersBtn: Button
+    private lateinit var eightLettersBtn: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_level_selection)

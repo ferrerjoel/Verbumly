@@ -1,9 +1,7 @@
 package com.example.verbumly
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.Layout
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -13,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.verbumly.data.WordData
 import com.example.verbumly.ui_elements.LetterBox
 import com.example.verbumly.ui_elements.LetterBoxAdapter
-
 
 const val WORD_LINES = 6
 
@@ -73,9 +70,9 @@ class Level : AppCompatActivity() {
      */
     fun checkWord() {
         var boxLetter: Char
-        var inputtedWord: String = ""
+        var inputtedWord = ""
         // If we don't do this check here we may get a out of bounds error (because the word is not completed, for example)
-        if (currentPosition == lastAndMaxArrayBoxPositions.second + 1) {
+        if (currentPosition == lastAndMaxArrayBoxPositions.second + 1 && currentPosition < letterBoxArray.size) {
             // Get the inputted word on the corresponding line
             for (i in lettersNum downTo 1) {
                 inputtedWord += letterBoxArray[currentPosition - i].letter
@@ -160,6 +157,7 @@ class Level : AppCompatActivity() {
      */
     private fun initializePopUpButtons(v : View, win : PopupWindow) {
         v.findViewById<Button>(R.id.playAgainBtn).setOnClickListener(){
+            // Dismisses the popup
             win.dismiss()
             recreate()
         }
