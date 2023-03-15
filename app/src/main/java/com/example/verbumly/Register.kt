@@ -103,7 +103,7 @@ class Register : AppCompatActivity() {
 //                .toString()
 
             val playerData: HashMap<String, Any> = HashMap<String, Any>()
-            val playerStats: HashMap<String, String> = HashMap<String, String>()
+            val playerStats: HashMap<String, Any> = HashMap<String, Any>()
 
             playerData["Uid"] = uidString
             playerData["Email"] = mailString
@@ -112,17 +112,21 @@ class Register : AppCompatActivity() {
             playerData["Date"] = dateString
             playerData["Stats"] = playerStats
 
-            playerStats["MaxStreak"] = "0"
-            playerStats["CurrentStreak"] = "0"
-            playerStats["Plays"] = "0"
+            playerStats["MaxStreak"] = 0
+            playerStats["CurrentStreak"] = 0
+            playerStats["Plays"] = 0
 
             // We create a cursor and we give it a name
             val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://verbumly-default-rtdb.firebaseio.com/")
             val reference: DatabaseReference = database.getReference("")
 
-            // Create a child with the values of playerData
-            reference.child(uidString).setValue(playerData)
-            Toast.makeText(this, "User registered successfully", Toast.LENGTH_SHORT).show()
+            if(reference != null) {
+                // Create a child with the values of playerData
+                reference.child(uidString).setValue(playerData)
+                Toast.makeText(this, "User registered successfully", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Data base error", Toast.LENGTH_SHORT).show()
+            }
             finish()
 
         } else {

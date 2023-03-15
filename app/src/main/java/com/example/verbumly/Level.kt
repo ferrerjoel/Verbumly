@@ -190,38 +190,29 @@ class Level : AppCompatActivity() {
 
     private fun updateDataBaseValue(hasWon: Boolean) {
 
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val stats =
-                    dataSnapshot.child(auth.uid!!).child("Stats") // Get the value from Firebase
-                val statsSet = database.child(auth.uid!!).child("Stats")
+        database.child(auth.uid!!).child("Stats").get().addOnSuccessListener {
+            val statsSet = database.child(auth.uid!!).child("Stats")
 
-                val plays = stats.child("Plays").value as Int
-                val currentStreak = stats.child("CurrentStreak").value as Int + 1
-                val maxStreak = stats.child("MaxStreak").value as Int
+            val plays = it.child("Plays").value as Long
+            val currentStreak = it.child("CurrentStreak").value as Long + 1
+            val maxStreak = it.child("MaxStreak").value as Long
 
-                statsSet.child("CurrentStreak").setValue(plays + 1)
+            statsSet.child("Plays").setValue(plays + 1)
 
-                if (hasWon) {
+            if (hasWon) {
 
-                    statsSet.child("CurrentStreak").setValue(currentStreak)
+                statsSet.child("CurrentStreak").setValue(currentStreak)
 
-                    if (maxStreak < currentStreak) {
-                        statsSet.child("MaxStreak").setValue(currentStreak)
-                    }
-
-                } else {
-                    statsSet.child("CurrentStreak").setValue(0)
+                if (maxStreak < currentStreak) {
+                    statsSet.child("MaxStreak").setValue(currentStreak)
                 }
 
+            } else {
+                statsSet.child("CurrentStreak").setValue(0)
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w("TAG", "Failed to read value.", error.toException())
-            }
-        })
+        } // Get the value from Firebase
 
 
     }
+
 }
