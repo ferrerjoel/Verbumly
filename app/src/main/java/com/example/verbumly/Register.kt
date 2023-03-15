@@ -22,17 +22,17 @@ class Register : AppCompatActivity() {
 
     lateinit var auth: FirebaseAuth //FIREBASE AUTH
 
-    lateinit var mailEt: EditText
-    lateinit var passEt: EditText
-    lateinit var nameEt: EditText
-    lateinit var dateTv: TextView
-    lateinit var registerBtn: Button
+    private lateinit var mailEt: EditText
+    private lateinit var passEt: EditText
+    private lateinit var nameEt: EditText
+    private lateinit var dateTv: TextView
+    private lateinit var registerBtn: Button
 
     // Load data to TV
     // We use calendar (but there are more options)
     val date = Calendar.getInstance().time
-    val formatter = SimpleDateFormat.getDateInstance() //or use
-    val formatedDate = formatter.format(date)
+    private val formatter = SimpleDateFormat.getDateInstance() //or use
+    private val formatedDate = formatter.format(date)
     // We show the TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {

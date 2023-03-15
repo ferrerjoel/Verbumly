@@ -12,10 +12,7 @@ import com.example.verbumly.data.WordData
 import com.example.verbumly.ui_elements.LetterBox
 import com.example.verbumly.ui_elements.LetterBoxAdapter
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -173,13 +170,13 @@ class Level : AppCompatActivity() {
      * Initialize the function of the buttons
      */
     private fun initializePopUpButtons(v: View, win: PopupWindow) {
-        v.findViewById<Button>(R.id.playAgainBtn).setOnClickListener() {
+        v.findViewById<Button>(R.id.playAgainBtn).setOnClickListener {
             // Dismisses the popup
             win.dismiss()
             recreate()
         }
 
-        v.findViewById<Button>(R.id.returnBtn).setOnClickListener() {
+        v.findViewById<Button>(R.id.returnBtn).setOnClickListener {
             returnToMenu()
         }
     }
@@ -189,10 +186,10 @@ class Level : AppCompatActivity() {
     }
 
     private fun updateDataBaseValue(hasWon: Boolean) {
-
+        // Get database stats
         database.child(auth.uid!!).child("Stats").get().addOnSuccessListener {
             val statsSet = database.child(auth.uid!!).child("Stats")
-
+            // Recover base stats
             val plays = it.child("Plays").value as Long
             val currentStreak = it.child("CurrentStreak").value as Long + 1
             val maxStreak = it.child("MaxStreak").value as Long
