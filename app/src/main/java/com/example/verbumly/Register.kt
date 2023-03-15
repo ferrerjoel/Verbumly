@@ -120,13 +120,9 @@ class Register : AppCompatActivity() {
             val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://verbumly-default-rtdb.firebaseio.com/")
             val reference: DatabaseReference = database.getReference("")
 
-            if(reference != null) {
-                // Create a child with the values of playerData
-                reference.child(uidString).setValue(playerData)
-                Toast.makeText(this, "User registered successfully", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Data base error", Toast.LENGTH_SHORT).show()
-            }
+            // Create a child with the values of playerData
+            reference.child(uidString).setValue(playerData)
+            Toast.makeText(this, "User registered successfully", Toast.LENGTH_SHORT).show()
             finish()
 
         } else {

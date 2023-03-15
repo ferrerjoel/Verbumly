@@ -11,10 +11,20 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.verbumly.data.WordData
 import com.example.verbumly.ui_elements.LetterBox
 import com.example.verbumly.ui_elements.LetterBoxAdapter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 const val WORD_LINES = 6
 
 class Level : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
 
     private lateinit var gridView: GridView
 
@@ -61,6 +71,9 @@ class Level : AppCompatActivity() {
 
         gridView.adapter = adapter
 
+        auth = FirebaseAuth.getInstance()
+        database = Firebase.database.reference
+
     }
 
     /**
@@ -101,7 +114,11 @@ class Level : AppCompatActivity() {
 
                 adapter.notifyDataSetChanged()
 
-                if (inputtedWord.lowercase() == word || currentPosition == letterBoxArray.size) {
+                if (inputtedWord.lowercase() == word) {
+                    updateDataBaseValue(true)
+                    showPopUp()
+                } else if (currentPosition == letterBoxArray.size) {
+                    updateDataBaseValue(false)
                     showPopUp()
                 }
             }
@@ -135,7 +152,7 @@ class Level : AppCompatActivity() {
 
     private fun showPopUp() {
         // The next line requires API 23, which is not supported in this project
-        //findViewById<View>(android.R.id.content).foreground.alpha = 255
+        // findViewById<View>(android.R.id.content).foreground.alpha = 255
         // inflate the layout of the popup window
         val inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val popupView: View = inflater.inflate(R.layout.level_popup, null)
@@ -155,19 +172,56 @@ class Level : AppCompatActivity() {
     /**
      * Initialize the function of the buttons
      */
-    private fun initializePopUpButtons(v : View, win : PopupWindow) {
-        v.findViewById<Button>(R.id.playAgainBtn).setOnClickListener(){
+    private fun initializePopUpButtons(v: View, win: PopupWindow) {
+        v.findViewById<Button>(R.id.playAgainBtn).setOnClickListener() {
             // Dismisses the popup
             win.dismiss()
             recreate()
         }
 
-        v.findViewById<Button>(R.id.returnBtn).setOnClickListener(){
+        v.findViewById<Button>(R.id.returnBtn).setOnClickListener() {
             returnToMenu()
         }
     }
 
-    private fun returnToMenu(){
+    private fun returnToMenu() {
         startActivity(Intent(this, MainActivity::class.java))
+    }
+
+    private fun updateDataBaseValue(hasWon: Boolean) {
+
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val stats =
+                    dataSnapshot.child(auth.uid!!).child("Stats") // Get the value from Firebase
+                val statsSet = database.child(auth.uid!!).child("Stats")
+
+                val plays = stats.child("Plays").value as Int
+                val currentStreak = stats.child("CurrentStreak").value as Int + 1
+                val maxStreak = stats.child("MaxStreak").value as Int
+
+                statsSet.child("CurrentStreak").setValue(plays + 1)
+
+                if (hasWon) {
+
+                    statsSet.child("CurrentStreak").setValue(currentStreak)
+
+                    if (maxStreak < currentStreak) {
+                        statsSet.child("MaxStreak").setValue(currentStreak)
+                    }
+
+                } else {
+                    statsSet.child("CurrentStreak").setValue(0)
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException())
+            }
+        })
+
+
     }
 }
