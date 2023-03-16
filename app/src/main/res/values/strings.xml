@@ -29,4 +29,6 @@
     <string name="statsCurrStreak">Current Streak\n%1$s</string>
     <string name="statsMaxStreak">Max Streak\n%1$s</string>
     <string name="statsPlays">Plays\n%1$s</string>
+
+    <string name="leaderboardMaxStreak">Max streak: %1$d</string>
 </resources>
