@@ -21,16 +21,13 @@
             android:name=".Leaderboard"
             android:exported="false" />
         <activity
-            android:name=".CropImageActivity"
-            android:exported="false" />
-        <activity
             android:name=".EditProfile"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Level"
             android:exported="false"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LevelSelection"
             android:exported="false"
@@ -50,7 +47,8 @@
         <activity
             android:name=".SplashScreen"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:noHistory="true">
 
             <!--
             To block mobile direction

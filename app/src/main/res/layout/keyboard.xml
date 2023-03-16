@@ -212,14 +212,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/enter_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:backgroundTint="@color/cian_700"
                 android:padding="0px"
-                android:text="\u21B3"/>
+                android:text="\u21B3"
+                android:textSize="12sp" />
             <Button
                 android:id="@+id/z_key"
                 android:layout_width="0dp"
@@ -276,14 +278,16 @@
                 android:textSize="12sp"
                 android:padding="0px"
                 android:text="M"/>
+
             <Button
                 android:id="@+id/backspace_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:backgroundTint="@color/delete_button"
                 android:padding="0px"
-                android:text="\u232b"/>
+                android:text="\u232b"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 </merge>

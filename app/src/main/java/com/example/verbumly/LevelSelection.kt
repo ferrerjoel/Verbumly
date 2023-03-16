@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 
 class LevelSelection : AppCompatActivity() {
 
@@ -45,7 +44,7 @@ class LevelSelection : AppCompatActivity() {
     }
 
     private fun startLevel(num : Int) {
-        Toast.makeText(this,"STARTED FIVE LETTERS", Toast.LENGTH_SHORT).show()
+        // Toast.makeText(this,"STARTED FIVE LETTERS", Toast.LENGTH_SHORT).show()
         val levelIntent = Intent(this, Level::class.java)
         levelIntent.putExtra("letters", num)
         startActivity(levelIntent)

@@ -11,6 +11,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="cian_200">#00C5B1</color>
+    <color name="cian_700">#00887A</color>
     <color name="gray_50">#555555</color>
     <color name="gray_100">#2C2C2C</color>
     <color name="gray_150">#222222</color>
@@ -19,4 +20,6 @@
     <color name="gray_700">#101010</color>
 
     <color name="yellow_200">#FFC107</color>
+
+    <color name="delete_button">#FF4343</color>
 </resources>
