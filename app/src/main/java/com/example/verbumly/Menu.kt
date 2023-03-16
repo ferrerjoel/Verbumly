@@ -102,7 +102,8 @@ class Menu : AppCompatActivity() {
     {
         if (user !=null)
         {
-            Toast.makeText(this,"Player logged", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Player logged"+ user!!.displayName,
+                Toast.LENGTH_SHORT).show()
         }
         else
         {
