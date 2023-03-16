@@ -25,4 +25,8 @@
     <string name="popupPlayAgain">Play again</string>
     <string name="popupReturn">Return to menu</string>
     <string name="levelSelectionLength">Select the length of the word</string>
+    <string name="statsMail">%1$s</string>
+    <string name="statsCurrStreak">Current Streak\n%1$s</string>
+    <string name="statsMaxStreak">Max Streak\n%1$s</string>
+    <string name="statsPlays">Plays\n%1$s</string>
 </resources>

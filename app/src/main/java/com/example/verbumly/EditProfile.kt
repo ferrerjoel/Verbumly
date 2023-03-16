@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
@@ -25,6 +26,10 @@ import java.io.ByteArrayOutputStream
 class EditProfile : AppCompatActivity() {
 
     private lateinit var uname: TextView
+    private lateinit var mail: TextView
+    private lateinit var cStreak: TextView
+    private lateinit var mStreak: TextView
+    private lateinit var plays: TextView
     private lateinit var avatar: CircleImageView
     private lateinit var closeBtn: Button
     private lateinit var updateBtn: Button
@@ -36,26 +41,50 @@ class EditProfile : AppCompatActivity() {
     private lateinit var imageUri: Uri
     private lateinit var stRef: StorageReference
 
-    private lateinit var username : String
+    private var username: String = ""
+    private var email: String = ""
+    private var curr_streak: Long = 0
+    private var max_streak: Long = 0
+    private var player_plays: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
+
+        uname = findViewById(R.id.uname)
+        mail = findViewById(R.id.mail)
+        cStreak = findViewById(R.id.curr_streak)
+        mStreak = findViewById(R.id.max_streak)
+        plays = findViewById(R.id.plays)
+
+
         auth = FirebaseAuth.getInstance()
         database = Firebase.database.reference
 
-        database.addValueEventListener(object : ValueEventListener{
+        database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                 username = snapshot.child(auth.uid!!).child("Name").value.toString() // Get the value from Firebase
-                 val stats = snapshot.child(auth.uid!!).child("Stats")
+                username = snapshot.child(auth.uid!!)
+                    .child("Name").value.toString() // Get the name from Firebase
+                email = snapshot.child(auth.uid!!)
+                    .child("Email").value.toString() // Get the email from Firebase
+                val stats = snapshot.child(auth.uid!!).child("Stats")
 
-                val curr_streak = stats.child("CurrentStreak").value.toString()
+                curr_streak = stats.child("CurrentStreak").value as Long //Get the current streak
+                max_streak = stats.child("MaxStreak").value as Long //Get the max streak
+                player_plays = stats.child("Plays").value as Long //Get the plays
+
+
+                uname.text = username
+                mail.text = email
+                cStreak.text = getString(R.string.statsCurrStreak, curr_streak.toString())
+                mStreak.text = getString(R.string.statsMaxStreak, max_streak.toString())
+                plays.text = getString(R.string.statsPlays, player_plays.toString())
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
             }
         })
-        uname = findViewById(R.id.uname)
-
-        uname.text = auth.uid!!
-
         stRef = FirebaseStorage.getInstance().reference
 
         avatar = findViewById<CircleImageView>(R.id.user_avatar)
@@ -70,13 +99,14 @@ class EditProfile : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        var resultLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
-            Picasso.get().load(result).into(avatar)
-        }
+        var resultLauncher =
+            registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
+                Picasso.get().load(result).into(avatar)
+            }
         changeAvatarBtn.setOnClickListener(View.OnClickListener {
             resultLauncher.launch("image/*")
         })
-        updateBtn.setOnClickListener(View.OnClickListener{
+        updateBtn.setOnClickListener(View.OnClickListener {
 
             uploadImage()
         })
@@ -96,7 +126,7 @@ class EditProfile : AppCompatActivity() {
         val data = baos.toByteArray()
 
         var uploadTask = folderReference.child(auth.uid!!).putBytes(data)
-        uploadTask.addOnFailureListener{
+        uploadTask.addOnFailureListener {
             // Handle unsuccessful uploads
         }.addOnSuccessListener { taskSnapshot ->
             // taskSnapshot.metadata contains file metadata such as size, content-type, etc.

@@ -7,22 +7,25 @@
     tools:context=".EditProfile"
     android:background="@color/gray_200"
     tools:viewBindingIgnore="true" >
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_avatar"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="75sp"
         android:src="@drawable/no_profile_user"
         app:civ_border_color="@color/cian_200"
-        app:civ_border_width="2dp"/>
+        app:civ_border_width="2sp"/>
 
     <TextView
         android:id="@+id/uname"
-        android:layout_width="150dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginTop="15sp"
+        android:textAlignment="center"
+        android:fontFamily="@font/lemonmilk"
+        android:textSize="30sp"/>
 
     <Button
         android:id="@+id/change_avatar_btn"
@@ -32,22 +35,26 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="5sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
     <LinearLayout
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_margin="16dp"
-        android:layout_below="@id/change_avatar_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="-446sp"
+        android:layout_marginEnd="16sp"
+        android:layout_marginBottom="16sp"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
         <Button
             android:id="@+id/btn_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="6dp"
+            android:layout_marginEnd="6sp"
             android:layout_weight="1"
             android:text="Close"
             android:textColor="@color/black"
@@ -55,13 +62,60 @@
 
         <Button
             android:id="@+id/btn_update"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="Update"
             android:layout_width="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6sp"
+            android:layout_weight="1"
+            android:text="Update"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100sp"
+        android:layout_marginTop="300sp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/mail"
+            android:layout_width="match_parent"
+            android:layout_height="55sp"
+            android:textSize="20sp"
+            android:fontFamily="@font/lemonmilk"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/plays"
+            android:layout_width="match_parent"
+            android:layout_height="81sp"
+            android:textSize="30sp"
+            android:layout_marginTop="8sp"
+            android:fontFamily="@font/lemonmilk"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/max_streak"
+            android:layout_width="match_parent"
+            android:layout_height="81sp"
+            android:textSize="30sp"
+            android:layout_marginTop="8sp"
+            android:fontFamily="@font/lemonmilk"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/curr_streak"
+            android:layout_width="match_parent"
+            android:layout_height="81sp"
+            android:textSize="30sp"
+            android:layout_marginTop="8sp"
+            android:fontFamily="@font/lemonmilk"
+            android:textAlignment="center"/>
 
     </LinearLayout>
 
