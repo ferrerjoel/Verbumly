@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,6 +23,7 @@ import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import java.io.ByteArrayOutputStream
+
 
 class EditProfile : AppCompatActivity() {
 
@@ -38,14 +40,15 @@ class EditProfile : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
-    private lateinit var imageUri: Uri
+    private lateinit var imageUri: String
     private lateinit var stRef: StorageReference
+    private lateinit var stRefUrl: StorageReference
 
     private var username: String = ""
     private var email: String = ""
-    private var curr_streak: Long = 0
-    private var max_streak: Long = 0
-    private var player_plays: Long = 0
+    private var currStreak: Long = 0
+    private var maxStreak: Long = 0
+    private var playerPlays: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,25 +72,35 @@ class EditProfile : AppCompatActivity() {
                     .child("Email").value.toString() // Get the email from Firebase
                 val stats = snapshot.child(auth.uid!!).child("Stats")
 
-                curr_streak = stats.child("CurrentStreak").value as Long //Get the current streak
-                max_streak = stats.child("MaxStreak").value as Long //Get the max streak
-                player_plays = stats.child("Plays").value as Long //Get the plays
+                currStreak = stats.child("CurrentStreak").value as Long //Get the current streak
+                maxStreak = stats.child("MaxStreak").value as Long //Get the max streak
+                playerPlays = stats.child("Plays").value as Long //Get the plays
 
 
                 uname.text = username
                 mail.text = email
-                cStreak.text = getString(R.string.statsCurrStreak, curr_streak.toString())
-                mStreak.text = getString(R.string.statsMaxStreak, max_streak.toString())
-                plays.text = getString(R.string.statsPlays, player_plays.toString())
+                cStreak.text = getString(R.string.statsCurrStreak, currStreak.toString())
+                mStreak.text = getString(R.string.statsMaxStreak, maxStreak.toString())
+                plays.text = getString(R.string.statsPlays, playerPlays.toString())
+
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
         })
-        stRef = FirebaseStorage.getInstance().reference
+        stRefUrl = FirebaseStorage.getInstance().reference
+
 
         avatar = findViewById<CircleImageView>(R.id.user_avatar)
+
+        // Load the image using Picasso
+        stRefUrl.child("avatars/"+auth.uid!!+".jpeg").downloadUrl.addOnSuccessListener(OnSuccessListener<Uri?> { uri ->
+            Picasso.get()
+                .load(uri)
+                .into(avatar)
+        })
+
 
         closeBtn = findViewById(R.id.btn_close)
         updateBtn = findViewById(R.id.btn_update)
