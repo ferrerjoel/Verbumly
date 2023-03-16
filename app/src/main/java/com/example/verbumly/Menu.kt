@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.color.utilities.Score
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -50,7 +51,7 @@ class Menu : AppCompatActivity() {
         }
         scoreBtn.setOnClickListener(){
             Toast.makeText(this,"Score", Toast.LENGTH_SHORT).show()
-            userProfile()
+            startActivity((Intent(this, EditProfile::class.java)))
         }
         leaderboardBtn.setOnClickListener(){
             Toast.makeText(this, "Leaderboard", Toast.LENGTH_SHORT).show()
