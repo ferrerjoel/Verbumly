@@ -9,6 +9,7 @@ import android.util.Log
 import android.util.TypedValue
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.example.verbumly.R
 
 
@@ -34,6 +35,7 @@ class LetterBox(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
         setTextSize(TypedValue.COMPLEX_UNIT_SP, 38F)
         setTextColor(ContextCompat.getColor(context, R.color.white))
         setTypeface(null, Typeface.BOLD)
+        typeface = ResourcesCompat.getFont(context, R.font.lemonmilk)
     }
 
     /**

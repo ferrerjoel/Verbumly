@@ -16,80 +16,99 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="Q"/>
+                android:text="Q"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/w_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="W"/>
+                android:text="W"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/e_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
-                android:text="E"/>
+                android:fontFamily="@font/lemonmilk"
+                android:text="E"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/r_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="R"/>
+                android:text="R"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/t_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="T"/>
+                android:text="T"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/y_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="Y"/>
+                android:text="Y"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/u_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="U"/>
+                android:text="U"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/i_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="I"/>
+                android:text="I"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/o_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="O"/>
+                android:text="O"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/p_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="P"/>
+                android:text="P"
+                android:textSize="12sp" />
 
 
         </LinearLayout>
@@ -115,62 +134,76 @@
                 android:textSize="12sp"
                 android:padding="0px"
                 android:text="S"/>
+
             <Button
                 android:id="@+id/d_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="D"/>
+                android:text="D"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/f_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="F"/>
+                android:text="F"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/g_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="G"/>
+                android:text="G"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/h_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="H"/>
+                android:text="H"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/j_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="J"/>
+                android:text="J"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/k_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="K"/>
+                android:text="K"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/l_key"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:fontFamily="@font/lemonmilk"
                 android:padding="0px"
-                android:text="L"/>
+                android:text="L"
+                android:textSize="12sp" />
 
 
         </LinearLayout>

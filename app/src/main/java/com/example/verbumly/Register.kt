@@ -38,7 +38,6 @@ class Register : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        val tf = Typeface.createFromAsset(assets,"fonts/lemon_milk/LEMONMILK-Regular.otf")
 
         auth = FirebaseAuth.getInstance()
         mailEt = findViewById<EditText>(R.id.mailEt)

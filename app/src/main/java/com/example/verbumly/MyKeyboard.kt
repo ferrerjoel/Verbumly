@@ -1,19 +1,13 @@
 package com.example.verbumly
 
 import android.content.Context
-import android.text.TextUtils
 import android.util.AttributeSet
-import android.util.Log
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
-import android.view.inputmethod.InputConnection
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
-import androidx.core.util.containsValue
-import androidx.core.util.forEach
-import androidx.core.util.keyIterator
 
 class MyKeyboard @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -47,15 +41,14 @@ class MyKeyboard @JvmOverloads constructor(
     private var m_key: Button? = null
     private var backspace_key: Button? = null
     private val keyValues = SparseArray<String>()
-    private var inputConnection: InputConnection? = null
 
     val activity: Level = context as Level
 
     init {
-        init(context, attrs)
+        init(context)
     }
 
-    private fun init(context: Context, attrs: AttributeSet?) {
+    private fun init(context: Context) {
         LayoutInflater.from(context).inflate(R.layout.keyboard, this, true)
         q_key = findViewById<View>(R.id.q_key) as Button
         q_key!!.setOnClickListener(this)
@@ -159,7 +152,7 @@ class MyKeyboard @JvmOverloads constructor(
         }
     }
 
-    public fun grayOutKey(letter : Char) {
+    fun grayOutKey(letter : Char) {
         for (i in 0 until keyValues.size()){
             val btn = findViewById<Button>(keyValues.keyAt(i))
             if (btn.text == letter.toString()){
@@ -169,7 +162,4 @@ class MyKeyboard @JvmOverloads constructor(
         }
     }
 
-    fun setInputConnection(ic: InputConnection?) {
-        inputConnection = ic
-    }
 }

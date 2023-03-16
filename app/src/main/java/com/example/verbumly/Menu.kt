@@ -29,7 +29,6 @@ class Menu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
-        val tf = Typeface.createFromAsset(assets,"fonts/lemon_milk/LEMONMILK-Regular.otf")
 
         auth= FirebaseAuth.getInstance()
         user =auth.currentUser
@@ -45,18 +44,6 @@ class Menu : AppCompatActivity() {
         uidTv=findViewById(R.id.uidTv)
         mailTv=findViewById(R.id.mailTv)
         nameTv=findViewById(R.id.nameTv)
-
-
-        logoutBtn.setTypeface(tf)
-        creditsBtn.setTypeface(tf)
-        scoreBtn.setTypeface(tf)
-        playBtn.setTypeface(tf)
-
-        myscoreTv.setTypeface(tf)
-        scoreTv.setTypeface(tf)
-        uidTv.setTypeface(tf)
-        mailTv.setTypeface(tf)
-        nameTv.setTypeface(tf)
 
         creditsBtn.setOnClickListener(){
             Toast.makeText(this,"Credits", Toast.LENGTH_SHORT).show()

@@ -21,9 +21,10 @@
                 android:id="@+id/mailEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
+                android:autofillHints=""
+                android:fontFamily="@font/lemonmilk"
                 android:hint="@string/mailEt"
-                android:autofillHints="" />
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -36,9 +37,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:inputType="textPassword"
+                android:autofillHints=""
+                android:fontFamily="@font/lemonmilk"
                 android:hint="@string/passEt"
-                android:autofillHints="" />
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -47,18 +49,18 @@
             android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/loginBtn"
             android:layout_marginTop="10dp"
-            />
+            android:fontFamily="@font/lemonmilk"
+            android:text="@string/loginBtn" />
 
         <!-- Submit button -->
         <Button
             android:id="@+id/changePasswordBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Forgot Password?"
             android:layout_marginTop="10dp"
-            />
+            android:fontFamily="@font/lemonmilk"
+            android:text="Forgot Password?" />
 
 
     </LinearLayout>

@@ -21,8 +21,9 @@
                 android:id="@+id/mailEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="@string/mailEt" />
+                android:fontFamily="@font/lemonmilk"
+                android:hint="@string/mailEt"
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
         <!-- Force mail input -->
         <com.google.android.material.textfield.TextInputLayout
@@ -35,8 +36,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:inputType="textPassword"
-                android:hint="@string/passEt" />
+                android:fontFamily="@font/lemonmilk"
+                android:hint="@string/passEt"
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
         <!-- Force password input -->
 
@@ -49,6 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/lemonmilk"
                 android:hint="@string/nameEt" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,8 +72,8 @@
             android:id="@+id/registerBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/registerBtn"
             android:layout_marginTop="10dp"
-            />
+            android:fontFamily="@font/lemonmilk"
+            android:text="@string/registerBtn" />
     </LinearLayout>
 </RelativeLayout>

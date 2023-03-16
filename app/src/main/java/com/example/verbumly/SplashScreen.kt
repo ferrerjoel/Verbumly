@@ -11,7 +11,7 @@ import kotlin.concurrent.schedule
 
 class SplashScreen : AppCompatActivity() {
 
-    private val splashScreenDuration: Long = 3000;
+    private val splashScreenDuration: Long = 4000;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);

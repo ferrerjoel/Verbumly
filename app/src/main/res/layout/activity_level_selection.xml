@@ -18,11 +18,23 @@
         android:padding="30dp">
 
         <!-- Play button -->
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lemonmilk"
+            android:text="@string/levelSelectionLength"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/fourLettersBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/lemonmilk"
             android:text="4" />
         <!-- Play button -->
         <Button
@@ -30,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/lemonmilk"
             android:text="5" />
         <!-- Play button -->
         <Button
@@ -37,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/lemonmilk"
             android:text="6" />
         <!-- Play button -->
         <Button
@@ -44,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/lemonmilk"
             android:text="7" />
         <!-- Play button -->
         <Button
@@ -51,6 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/lemonmilk"
             android:text="8" />
 
     </LinearLayout>

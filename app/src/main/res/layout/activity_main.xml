@@ -18,14 +18,15 @@
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/loginBtn"/>
+            android:fontFamily="@font/lemonmilk"
+            android:text="@string/loginBtn" />
         <!--botó de registrar-se -->
         <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/registerBtn"
-        />
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lemonmilk"
+            android:text="@string/registerBtn" />
     </LinearLayout>
 
 </RelativeLayout>

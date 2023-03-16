@@ -24,4 +24,5 @@
     <string name="popupWord">The word was: %1$s</string>
     <string name="popupPlayAgain">Play again</string>
     <string name="popupReturn">Return to menu</string>
+    <string name="levelSelectionLength">Select the length of the word</string>
 </resources>
