@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -60,7 +61,6 @@ class EditProfile : AppCompatActivity() {
         mStreak = findViewById(R.id.max_streak)
         plays = findViewById(R.id.plays)
 
-
         auth = FirebaseAuth.getInstance()
         database = Firebase.database.reference
 
@@ -76,7 +76,6 @@ class EditProfile : AppCompatActivity() {
                 maxStreak = stats.child("MaxStreak").value as Long //Get the max streak
                 playerPlays = stats.child("Plays").value as Long //Get the plays
 
-
                 uname.text = username
                 mail.text = email
                 cStreak.text = getString(R.string.statsCurrStreak, currStreak.toString())
@@ -89,46 +88,48 @@ class EditProfile : AppCompatActivity() {
 
             }
         })
-        stRefUrl = FirebaseStorage.getInstance().reference
 
+        stRefUrl = FirebaseStorage.getInstance().reference
 
         avatar = findViewById<CircleImageView>(R.id.user_avatar)
 
         // Load the image using Picasso
-        stRefUrl.child("avatars/"+auth.uid!!+".jpeg").downloadUrl.addOnSuccessListener(OnSuccessListener<Uri?> { uri ->
-            Picasso.get()
-                .load(uri)
-                .into(avatar)
-        })
-
+        stRefUrl.child("avatars/" + auth.uid!!).downloadUrl.addOnSuccessListener {
+            OnSuccessListener<Uri?> { uri ->
+                Picasso.get().load(uri).into(avatar)
+                Log.d("DEBUG", "Has image")
+            }
+        }.addOnFailureListener {
+            Log.d("DEBUG", "The user doesn't have an image")
+        }
 
         closeBtn = findViewById(R.id.btn_close)
         updateBtn = findViewById(R.id.btn_update)
         changeAvatarBtn = findViewById(R.id.change_avatar_btn)
-
 
         closeBtn.setOnClickListener {
             val intent = Intent(this@EditProfile, Menu::class.java)
             startActivity(intent)
             finish()
         }
+
         var resultLauncher =
             registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
                 Picasso.get().load(result).into(avatar)
             }
+
         changeAvatarBtn.setOnClickListener(View.OnClickListener {
             resultLauncher.launch("image/*")
         })
-        updateBtn.setOnClickListener(View.OnClickListener {
 
+        updateBtn.setOnClickListener(View.OnClickListener {
             uploadImage()
         })
-
 
     }
 
     private fun uploadImage() {
-        var folderReference: StorageReference = stRef.child("avatars")
+        var folderReference: StorageReference = stRefUrl.child("avatars")
 
         // Get the data from an ImageView as bytes
         avatar.isDrawingCacheEnabled = true
