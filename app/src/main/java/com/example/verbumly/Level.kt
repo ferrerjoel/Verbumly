@@ -1,6 +1,8 @@
 package com.example.verbumly
 
 import android.content.Intent
+import android.media.AudioAttributes
+import android.media.SoundPool
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -15,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+
 
 const val WORD_LINES = 6
 
@@ -31,6 +34,12 @@ class Level : AppCompatActivity() {
     private var lettersNum: Int = 0
     private var currentPosition: Int = 0
 
+    //Audio manager | Audios
+    private var soundPool: SoundPool? = null
+    private var audioAttributes : AudioAttributes? = null
+    private var keyPressedAudio : Int = 1
+    private var winAudio = 1
+    private var gameOverAudio : Int = 1
     // When you jump from line this value has to be set to know when you can't return
     // Fist element is the last position available where you can return, max is the max position where you can go
     private lateinit var lastAndMaxArrayBoxPositions: Pair<Int, Int>
@@ -41,6 +50,16 @@ class Level : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_level)
+        //Initialize Audio manager | Audios
+        audioAttributes = AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build()
+        soundPool = SoundPool.Builder().setMaxStreams(3).setAudioAttributes(audioAttributes).build()
+        keyPressedAudio = soundPool!!.load(this, R.raw.key_pressed, 1)
+        winAudio = soundPool!!.load(baseContext, R.raw.win, 1)
+        gameOverAudio = soundPool!!.load(this, R.raw.game_over, 1)
+
+        soundPool?.play(winAudio, 1f, 1f, 0, 0, 1f)
+
+
         // Get the saved parameter that is going to be the number of letters the word is going to have
         lettersNum = intent.getIntExtra("letters", 0)
 
@@ -114,6 +133,7 @@ class Level : AppCompatActivity() {
                 if (inputtedWord.lowercase() == word) {
                     updateDataBaseValue(true)
                     showPopUp()
+                    soundPool!!.play(winAudio, 1f,1f, 0,0,1f)
                 } else if (currentPosition == letterBoxArray.size) {
                     updateDataBaseValue(false)
                     showPopUp()
