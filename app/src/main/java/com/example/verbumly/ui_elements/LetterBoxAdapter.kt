@@ -20,7 +20,7 @@ class LetterBoxAdapter(context: Context, letterBoxArray: ArrayList<LetterBox>) :
         }
 
         (view as LetterBox).text = letterBox?.letter.toString()
-
+        // Checks what background to set on the letter box
         if (letterBox != null) {
             if (letterBox.isCorrect) {
                 view.setBackgroundResource(R.drawable.border_letter_cian)

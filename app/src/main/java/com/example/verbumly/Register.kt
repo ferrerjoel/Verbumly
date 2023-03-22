@@ -1,6 +1,5 @@
 package com.example.verbumly
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -64,6 +63,9 @@ class Register : AppCompatActivity() {
         }
     }
 
+    /**
+     * Using the given data it registers the user into the Firebase database
+     */
     private fun registerPlayer(email: String, pass: String) {
         auth.createUserWithEmailAndPassword(email, pass)
             .addOnCompleteListener(this) { task ->
@@ -88,14 +90,11 @@ class Register : AppCompatActivity() {
     private fun updateUI(user: FirebaseUser?) {
         // Question mark = can be null
         if (user != null) {
-            val score: Int = 0
             val uidString: String = user.uid
             val mailString: String = mailEt.text.toString()
             val passString: String = passEt.text.toString()
             val nameString: String = nameEt.text.toString()
             val dateString: String = dateTv.text.toString()
-
-            // TODO: HERE SAVE THE CONTENT OF THE DATABASE
 
 //            val hashPass = Hashing.sha256()
 //                .hashString(passString, StandardCharsets.UTF_8)

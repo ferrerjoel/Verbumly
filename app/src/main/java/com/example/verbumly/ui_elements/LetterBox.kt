@@ -21,7 +21,6 @@ class LetterBox(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
     var isCorrect = false
     var isInTheWord = false
 
-
     init {
         // This maybe should be done with a LayoutInflater
         setBackgroundResource(R.drawable.border_letter)
@@ -39,6 +38,7 @@ class LetterBox(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
     }
 
     /**
+     * This value is used by the adapter to know what background resource is needed to use
      * 0 -> It's not in the word
      * 1 -> It's in the word
      * 2 -> Correct position

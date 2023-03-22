@@ -1,7 +1,6 @@
 package com.example.verbumly
 
 import android.content.Intent
-import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -13,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     //variables to check if user is logged
     lateinit var auth: FirebaseAuth
-    var user: FirebaseUser? = null;
+    var user: FirebaseUser? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +44,10 @@ class MainActivity : AppCompatActivity() {
         isLogged()
         super.onStart()
     }
-    
+
+    /**
+     * Loads the menu activity if the user is logged
+     */
     private fun isLogged(){
         if(user != null){
             val intent = Intent(this, Menu::class.java)

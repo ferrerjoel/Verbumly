@@ -43,6 +43,9 @@ class LevelSelection : AppCompatActivity() {
         }
     }
 
+    /**
+     * Starts the activity of the level, passing by the letters of the level word
+     */
     private fun startLevel(num : Int) {
         // Toast.makeText(this,"STARTED FIVE LETTERS", Toast.LENGTH_SHORT).show()
         val levelIntent = Intent(this, Level::class.java)

@@ -21,7 +21,7 @@
                 android:id="@+id/mailEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lemonmilk"
+                android:fontFamily="sans-serif"
                 android:hint="@string/mailEt"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/lemonmilk"
+                android:fontFamily="sans-serif"
                 android:hint="@string/passEt"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/lemonmilk"
+                android:fontFamily="sans-serif"
                 android:hint="@string/nameEt" />
         </com.google.android.material.textfield.TextInputLayout>
 
