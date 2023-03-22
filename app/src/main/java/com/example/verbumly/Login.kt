@@ -54,6 +54,9 @@ class Login : AppCompatActivity() {
         }
     }
 
+    /**
+     * Passing a email and a password logs in the user
+     */
     private fun playerLogIn(email: String, pass: String) {
 //        val passHash = Hashing.sha256()
 //            .hashString(pass, StandardCharsets.UTF_8)
@@ -74,6 +77,9 @@ class Login : AppCompatActivity() {
 
     }
 
+    /**
+     * After log in loads the menu
+     */
     private fun updateUI(user: FirebaseUser?) {
         val intent = Intent(this, Menu::class.java)
         startActivity(intent)

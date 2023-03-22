@@ -51,6 +51,9 @@ class EditProfile : AppCompatActivity() {
     private var maxStreak: Long = 0
     private var playerPlays: Long = 0
 
+    /**
+     * Initializes all the edit profile activity elements
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
@@ -95,10 +98,7 @@ class EditProfile : AppCompatActivity() {
 
         // Load the image using Picasso
         stRefUrl.child("avatars/" + auth.uid!!).downloadUrl.addOnSuccessListener {
-            OnSuccessListener<Uri?> { uri ->
-                Picasso.get().load(uri).into(avatar)
-                Log.d("DEBUG", "Has image")
-            }
+            Picasso.get().load(it).into(avatar)
         }.addOnFailureListener {
             Log.d("DEBUG", "The user doesn't have an image")
         }
@@ -121,13 +121,16 @@ class EditProfile : AppCompatActivity() {
         changeAvatarBtn.setOnClickListener(View.OnClickListener {
             resultLauncher.launch("image/*")
         })
-
+        // Uploads the currently selected img to the database
         updateBtn.setOnClickListener(View.OnClickListener {
             uploadImage()
         })
 
     }
 
+    /**
+     * Uploads the selected img to the Storage of the the Firebase database
+     */
     private fun uploadImage() {
         var folderReference: StorageReference = stRefUrl.child("avatars")
 

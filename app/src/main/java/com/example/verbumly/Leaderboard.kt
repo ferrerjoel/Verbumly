@@ -15,6 +15,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
 
 class Leaderboard : AppCompatActivity() {
 
@@ -29,40 +30,72 @@ class Leaderboard : AppCompatActivity() {
         setContentView(R.layout.activity_leaderboard)
 
         auth = FirebaseAuth.getInstance()
+        // Used for the user data
         database = Firebase.database.reference
+        // Used for the user img
         stRef = FirebaseStorage.getInstance().reference
 
         recoverPlayers()
     }
 
+    /**
+     * Initializes the recycler view
+     */
     private fun initRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerLeaderboard)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = PlayerAdapter(players, this)
     }
 
+    /**
+     * Downloads user data needed to fill the recycler view
+     */
     private fun recoverPlayers() {
 
-        var userImage : Uri? = null
+        var totalPlayersSize : Long = 0
+        var playersDone : Long = 0
 
+        /**
+         * After fetching all users this function initializes the recycle view with the data
+         */
+        fun createLeaderboard() {
+            playersDone++
+            if (totalPlayersSize == playersDone){
+                Log.d("DEBUG", players.toString())
+                players.sortWith(compareByDescending<Player> { it.maxStreak })
+                Log.d("DEBUG", players.toString())
+                initRecyclerView()
+            }
+        }
+        // Gets the user data
         database.get().addOnSuccessListener {
-
-            for (player in it.children){
-                userImage = null
-                stRef.child("avatars/" + player.child("Uid").value.toString()).downloadUrl.addOnSuccessListener {
-                    OnSuccessListener<Uri?> { uri ->
-                        userImage = uri
-                        players.add(Player(player.child("Name").value.toString(), player.child("Stats").child("MaxStreak").value as Long, userImage))
-                    }
+            totalPlayersSize = it.childrenCount
+            for (player in it.children) {
+                // Gets the URI from the user image
+                stRef.child("avatars/" + player.child("Uid").value.toString()).downloadUrl.addOnSuccessListener { imageUri ->
+                    Log.d("DEBUG", player.toString())
+                    players.add(
+                        Player(
+                            player.child("Name").value.toString(),
+                            player.child("Stats").child("MaxStreak").value as Long,
+                            imageUri
+                        )
+                    )
+                    createLeaderboard()
                 }.addOnFailureListener {
-                    Log.d("DEBUG", "The user doesn't have an image")
-                    players.add(Player(player.child("Name").value.toString(), player.child("Stats").child("MaxStreak").value as Long, userImage))
+                    Log.d("DEBUG", "Error uid doesn't have image!")
+                    players.add(
+                        Player(
+                            player.child("Name").value.toString(),
+                            player.child("Stats").child("MaxStreak").value as Long,
+                            null
+                        )
+                    )
+                    createLeaderboard()
                 }
-
-
             }
 
-            initRecyclerView()
+
 
         } // Get the value from Firebase
     }
