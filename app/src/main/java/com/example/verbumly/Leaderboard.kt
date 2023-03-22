@@ -15,6 +15,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
 
 class Leaderboard : AppCompatActivity() {
 
@@ -43,26 +44,46 @@ class Leaderboard : AppCompatActivity() {
 
     private fun recoverPlayers() {
 
-        var userImage : Uri? = null
+        var totalPlayersSize : Long = 0
+        var playersDone : Long = 0
+
+        fun createLeaderboard() {
+            playersDone++
+            if (totalPlayersSize == playersDone){
+                Log.d("DEBUG", players.toString())
+                players.sortWith(compareByDescending<Player> { it.maxStreak })
+                Log.d("DEBUG", players.toString())
+                initRecyclerView()
+            }
+        }
 
         database.get().addOnSuccessListener {
-
-            for (player in it.children){
-                userImage = null
-                stRef.child("avatars/" + player.child("Uid").value.toString()).downloadUrl.addOnSuccessListener {
-                    OnSuccessListener<Uri?> { uri ->
-                        userImage = uri
-                        players.add(Player(player.child("Name").value.toString(), player.child("Stats").child("MaxStreak").value as Long, userImage))
-                    }
+            totalPlayersSize = it.childrenCount
+            for (player in it.children) {
+                stRef.child("avatars/" + player.child("Uid").value.toString()).downloadUrl.addOnSuccessListener { imageUri ->
+                    Log.d("DEBUG", player.toString())
+                    players.add(
+                        Player(
+                            player.child("Name").value.toString(),
+                            player.child("Stats").child("MaxStreak").value as Long,
+                            imageUri
+                        )
+                    )
+                    createLeaderboard()
                 }.addOnFailureListener {
-                    Log.d("DEBUG", "The user doesn't have an image")
-                    players.add(Player(player.child("Name").value.toString(), player.child("Stats").child("MaxStreak").value as Long, userImage))
+                    Log.d("DEBUG", "Error uid doesn't have image!")
+                    players.add(
+                        Player(
+                            player.child("Name").value.toString(),
+                            player.child("Stats").child("MaxStreak").value as Long,
+                            null
+                        )
+                    )
+                    createLeaderboard()
                 }
-
-
             }
 
-            initRecyclerView()
+
 
         } // Get the value from Firebase
     }

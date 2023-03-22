@@ -1,6 +1,7 @@
 package com.example.verbumly.ui_elements
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -20,10 +21,8 @@ class PlayerAdapter(val players: List<Player>, private val leaderboardContext: C
     }
 
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
-        //This method is called for every item
         val item = players[position]
         holder.render(item)
-
     }
 
 }

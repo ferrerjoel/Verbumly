@@ -95,10 +95,7 @@ class EditProfile : AppCompatActivity() {
 
         // Load the image using Picasso
         stRefUrl.child("avatars/" + auth.uid!!).downloadUrl.addOnSuccessListener {
-            OnSuccessListener<Uri?> { uri ->
-                Picasso.get().load(uri).into(avatar)
-                Log.d("DEBUG", "Has image")
-            }
+            Picasso.get().load(it).into(avatar)
         }.addOnFailureListener {
             Log.d("DEBUG", "The user doesn't have an image")
         }
