@@ -1,6 +1,8 @@
 package com.example.verbumly
 
 import android.content.Context
+import android.media.AudioAttributes
+import android.media.SoundPool
 import android.util.AttributeSet
 import android.util.SparseArray
 import android.view.LayoutInflater
@@ -12,6 +14,12 @@ import androidx.core.content.ContextCompat
 class MyKeyboard @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr), View.OnClickListener {
+    //Audio manager | Audios
+    private lateinit var soundPool: SoundPool
+    private var audioAttributes : AudioAttributes? = null
+    private var keyPressedAudio : Int = 1
+    private var winAudio = 1
+    private var gameOverAudio : Int = 1
     private var q_key: Button? = null
     private var w_key: Button? = null
     private var e_key: Button? = null
@@ -49,6 +57,11 @@ class MyKeyboard @JvmOverloads constructor(
     }
 
     private fun init(context: Context) {
+        //Initialize Audio manager | Audios
+        audioAttributes = AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build()
+        soundPool = SoundPool.Builder().setMaxStreams(3).setAudioAttributes(audioAttributes).build()
+        keyPressedAudio = soundPool.load(activity, R.raw.key_pressed, 1)
+
         LayoutInflater.from(context).inflate(R.layout.keyboard, this, true)
         q_key = findViewById<View>(R.id.q_key) as Button
         q_key!!.setOnClickListener(this)
@@ -137,6 +150,7 @@ class MyKeyboard @JvmOverloads constructor(
 
     override fun onClick(view: View) {
 
+        soundPool.play(keyPressedAudio, 1f,1f,0,0,1f)
         when (view.id) {
             R.id.backspace_key -> {
                 activity.deleteLetter()
