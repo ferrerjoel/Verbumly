@@ -35,7 +35,7 @@ class Level : AppCompatActivity() {
     private var currentPosition: Int = 0
 
     //Audio manager | Audios
-    private var soundPool: SoundPool? = null
+    private lateinit var soundPool: SoundPool
     private var audioAttributes : AudioAttributes? = null
     private var keyPressedAudio : Int = 1
     private var winAudio = 1
@@ -51,13 +51,10 @@ class Level : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_level)
         //Initialize Audio manager | Audios
-        audioAttributes = AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build()
+        audioAttributes = AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build()
         soundPool = SoundPool.Builder().setMaxStreams(3).setAudioAttributes(audioAttributes).build()
-        keyPressedAudio = soundPool!!.load(this, R.raw.key_pressed, 1)
-        winAudio = soundPool!!.load(baseContext, R.raw.win, 1)
-        gameOverAudio = soundPool!!.load(this, R.raw.game_over, 1)
-
-        soundPool?.play(winAudio, 1f, 1f, 0, 0, 1f)
+        winAudio = soundPool.load(baseContext, R.raw.win, 1)
+        gameOverAudio = soundPool.load(this, R.raw.game_over, 1)
 
 
         // Get the saved parameter that is going to be the number of letters the word is going to have
@@ -133,10 +130,11 @@ class Level : AppCompatActivity() {
                 if (inputtedWord.lowercase() == word) {
                     updateDataBaseValue(true)
                     showPopUp()
-                    soundPool!!.play(winAudio, 1f,1f, 0,0,1f)
+                    soundPool.play(winAudio, 1f,1f, 0,0,1f)
                 } else if (currentPosition == letterBoxArray.size) {
                     updateDataBaseValue(false)
                     showPopUp()
+                    soundPool.play(gameOverAudio, 1f,1f, 0,0,1f)
                 }
             }
         }
