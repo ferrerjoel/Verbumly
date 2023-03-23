@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Verbumly"
         tools:targetApi="31">
         <activity
+            android:name=".Credits"
+            android:exported="false" />
+        <activity
             android:name=".Leaderboard"
             android:exported="false" />
         <activity
@@ -27,6 +30,7 @@
         <activity
             android:name=".Level"
             android:exported="false"
+            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".LevelSelection"
@@ -47,8 +51,8 @@
         <activity
             android:name=".SplashScreen"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:screenOrientation="portrait">
 
             <!--
             To block mobile direction

@@ -33,6 +33,7 @@ class Menu : AppCompatActivity() {
 
         creditsBtn.setOnClickListener(){
             Toast.makeText(this,"Credits", Toast.LENGTH_SHORT).show()
+            startActivity((Intent(this, Credits::class.java)))
         }
         scoreBtn.setOnClickListener(){
             Toast.makeText(this,"Score", Toast.LENGTH_SHORT).show()

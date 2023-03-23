@@ -37,7 +37,6 @@ class Level : AppCompatActivity() {
     //Audio manager | Audios
     private lateinit var soundPool: SoundPool
     private var audioAttributes : AudioAttributes? = null
-    private var keyPressedAudio : Int = 1
     private var winAudio = 1
     private var gameOverAudio : Int = 1
     // When you jump from line this value has to be set to know when you can't return
@@ -45,6 +44,8 @@ class Level : AppCompatActivity() {
     private lateinit var lastAndMaxArrayBoxPositions: Pair<Int, Int>
 
     private lateinit var reversedWordArray: CharArray
+    // This value is used to know if the user should have access to the keyboard
+    private var gameIsOn : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -98,7 +99,7 @@ class Level : AppCompatActivity() {
         var boxLetter: Char
         var inputtedWord = ""
         // If we don't do this check here we may get a out of bounds error (because the word is not completed, for example)
-        if (currentPosition == lastAndMaxArrayBoxPositions.second + 1 && currentPosition <= letterBoxArray.size) {
+        if (currentPosition == lastAndMaxArrayBoxPositions.second + 1 && currentPosition <= letterBoxArray.size && gameIsOn) {
             // Get the inputted word on the corresponding line
             for (i in lettersNum downTo 1) {
                 inputtedWord += letterBoxArray[currentPosition - i].letter
@@ -131,19 +132,24 @@ class Level : AppCompatActivity() {
                     updateDataBaseValue(true)
                     showPopUp()
                     soundPool.play(winAudio, 1f,1f, 0,0,1f)
+                    gameIsOn = false
                 } else if (currentPosition == letterBoxArray.size) {
                     updateDataBaseValue(false)
                     showPopUp()
                     soundPool.play(gameOverAudio, 1f,1f, 0,0,1f)
+                    gameIsOn = false
                 }
             }
         }
 
     }
 
+    /**
+     * Adds the selected letter of the keyboard if the conditions are meted
+     */
     fun addLetter(letter: Char) {
 
-        if (lastAndMaxArrayBoxPositions.second >= currentPosition) {
+        if (lastAndMaxArrayBoxPositions.second >= currentPosition && gameIsOn) {
             letterBoxArray[currentPosition].letter = letter
             // Log.d("DEBUG", letterBoxArray[currentPosition].isCorrect.toString())
             // Log.d("DEBUG", "Letter set " + letter + " " + letterBoxArray[currentPosition].letter)
@@ -158,13 +164,16 @@ class Level : AppCompatActivity() {
      * Deletes the previous letter if possible
      */
     fun deleteLetter() {
-        if (lastAndMaxArrayBoxPositions.first <= currentPosition - 1) {
+        if (lastAndMaxArrayBoxPositions.first <= currentPosition - 1 && gameIsOn) {
             currentPosition--
             letterBoxArray[currentPosition].letter = ' '
             adapter.notifyDataSetChanged()
         }
     }
 
+    /**
+     * Shows a popup when the user wins or losses the game, shows the hidden word
+     */
     private fun showPopUp() {
         // The next line requires API 23, which is not supported in this project
         // findViewById<View>(android.R.id.content).foreground.alpha = 255
@@ -199,10 +208,16 @@ class Level : AppCompatActivity() {
         }
     }
 
+    /**
+     * Returns to the main menu
+     */
     private fun returnToMenu() {
         startActivity(Intent(this, MainActivity::class.java))
     }
 
+    /**
+     * Updates the plays, current streak and max streak values from the database
+     */
     private fun updateDataBaseValue(hasWon: Boolean) {
         // Get database stats
         database.child(auth.uid!!).child("Stats").get().addOnSuccessListener {
