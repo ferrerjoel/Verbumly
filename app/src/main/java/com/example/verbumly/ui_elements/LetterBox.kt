@@ -31,7 +31,7 @@ class LetterBox(context: Context, attrs: AttributeSet?) : AppCompatTextView(cont
         height =
             (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56F, resources.displayMetrics)
                 .toInt())
-        setTextSize(TypedValue.COMPLEX_UNIT_SP, 38F)
+        setTextSize(TypedValue.COMPLEX_UNIT_DIP, 38F)
         setTextColor(ContextCompat.getColor(context, R.color.white))
         setTypeface(null, Typeface.BOLD)
         typeface = ResourcesCompat.getFont(context, R.font.lemonmilk)
