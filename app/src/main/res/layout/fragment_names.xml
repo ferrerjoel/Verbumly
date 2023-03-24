@@ -6,9 +6,24 @@
     tools:context=".fragments.NamesFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="NAMES" />
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lemonmilk"
+            android:lineSpacingExtra="12sp"
+            android:text="@string/creditsCreators"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="26sp" />
+
+
+    </LinearLayout>
 
 </FrameLayout>
