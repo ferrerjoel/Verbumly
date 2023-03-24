@@ -47,16 +47,14 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <Button
+        <ImageButton
             android:id="@+id/camera_btn"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:layout_marginTop="6dp"
-            android:text="Camera"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_weight="1"
+            android:backgroundTint="@color/cian_200"
+            android:src="@drawable/camera_icon" />
     </LinearLayout>
 
     <LinearLayout
@@ -98,8 +96,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100sp"
-        android:layout_marginTop="300sp"
+        android:layout_marginTop="400sp"
         android:orientation="vertical">
 
         <TextView
