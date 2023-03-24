@@ -52,15 +52,15 @@ class Leaderboard : AppCompatActivity() {
      */
     private fun recoverPlayers() {
 
-        var totalPlayersSize : Long = 0
-        var playersDone : Long = 0
+        var totalPlayersSize: Long = 0
+        var playersDone: Long = 0
 
         /**
          * After fetching all users this function initializes the recycle view with the data
          */
         fun createLeaderboard() {
             playersDone++
-            if (totalPlayersSize == playersDone){
+            if (totalPlayersSize == playersDone) {
                 Log.d("DEBUG", players.toString())
                 players.sortWith(compareByDescending<Player> { it.maxStreak })
                 Log.d("DEBUG", players.toString())
@@ -76,6 +76,7 @@ class Leaderboard : AppCompatActivity() {
                     Log.d("DEBUG", player.toString())
                     players.add(
                         Player(
+                            player.child("Uid").value.toString(),
                             player.child("Name").value.toString(),
                             player.child("Stats").child("MaxStreak").value as Long,
                             imageUri
@@ -86,15 +87,16 @@ class Leaderboard : AppCompatActivity() {
                     Log.d("DEBUG", "Error uid doesn't have image!")
                     players.add(
                         Player(
+                            player.child("Uid").value.toString(),
                             player.child("Name").value.toString(),
                             player.child("Stats").child("MaxStreak").value as Long,
                             null
                         )
+
                     )
                     createLeaderboard()
                 }
             }
-
 
 
         } // Get the value from Firebase

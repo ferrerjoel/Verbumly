@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -42,11 +43,12 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
     private lateinit var changeAvatarBtn: Button
     private lateinit var cameraBtn: ImageButton
 
+    private lateinit var topButtons : LinearLayout
+    private lateinit var botButtons : LinearLayout
+
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
-    private lateinit var imageUri: String
-    private lateinit var stRef: StorageReference
     private lateinit var stRefUrl: StorageReference
 
     private var username: String = ""
@@ -68,18 +70,27 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
         mStreak = findViewById(R.id.max_streak)
         plays = findViewById(R.id.plays)
 
+        topButtons = findViewById(R.id.topBtn)
+        botButtons = findViewById(R.id.botBtn)
+
         auth = FirebaseAuth.getInstance()
         database = Firebase.database.reference
-
-
+        
+        var uid = intent.getStringExtra("UID")
+        if(uid == null){
+            uid = auth.uid!!
+        }else{
+            topButtons.visibility = View.GONE
+            botButtons.visibility = View.GONE
+        }
         //Get all of user info
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                username = snapshot.child(auth.uid!!)
+                username = snapshot.child(uid)
                     .child("Name").value.toString() // Get the name from Firebase
-                email = snapshot.child(auth.uid!!)
+                email = snapshot.child(uid)
                     .child("Email").value.toString() // Get the email from Firebase
-                val stats = snapshot.child(auth.uid!!).child("Stats")
+                val stats = snapshot.child(uid).child("Stats")
 
                 currStreak = stats.child("CurrentStreak").value as Long //Get the current streak
                 maxStreak = stats.child("MaxStreak").value as Long //Get the max streak
@@ -103,7 +114,7 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
         avatar = findViewById<CircleImageView>(R.id.user_avatar)
 
         // Load the image using Picasso
-        stRefUrl.child("avatars/" + auth.uid!!).downloadUrl.addOnSuccessListener {
+        stRefUrl.child("avatars/" + uid).downloadUrl.addOnSuccessListener {
             Picasso.get().load(it).into(avatar)
         }.addOnFailureListener {
             Log.d("DEBUG", "The user doesn't have an image")
@@ -137,7 +148,7 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
         })
         // Uploads the currently selected img to the database
         updateBtn.setOnClickListener(View.OnClickListener {
-            uploadImage()
+            uploadImage(uid)
         })
 
     }
@@ -156,7 +167,7 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
     /**
      * Uploads the selected img to the Storage of the the Firebase database
      */
-    private fun uploadImage() {
+    private fun uploadImage(uid : String) {
         var folderReference: StorageReference = stRefUrl.child("avatars")
 
         // Get the data from an ImageView as bytes
@@ -167,7 +178,7 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
 
-        var uploadTask = folderReference.child(auth.uid!!).putBytes(data)
+        var uploadTask = folderReference.child(uid).putBytes(data)
         uploadTask.addOnFailureListener {
             // Handle unsuccessful uploads
         }.addOnSuccessListener { taskSnapshot ->

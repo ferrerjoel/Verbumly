@@ -1,6 +1,7 @@
 package com.example.verbumly.ui_elements
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
@@ -9,6 +10,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.verbumly.EditProfile
+import com.example.verbumly.Level
 import com.example.verbumly.R
 import com.example.verbumly.data.Player
 import com.squareup.picasso.Picasso
@@ -43,6 +46,9 @@ class PlayerViewHolder(view: View, private val leaderboardContext: Context) :
 
         playerPhoto.setOnClickListener() {
             Toast.makeText(playerPhoto.context, playerName.text, Toast.LENGTH_LONG).show()
+            val levelIntent = Intent(leaderboardContext, EditProfile::class.java)
+            levelIntent.putExtra("UID", player.uid)
+            leaderboardContext.startActivity(levelIntent)
         }
 
     }
