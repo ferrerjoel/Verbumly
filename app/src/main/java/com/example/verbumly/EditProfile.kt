@@ -1,22 +1,18 @@
 package com.example.verbumly
 
-import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -44,7 +40,7 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
     private lateinit var closeBtn: Button
     private lateinit var updateBtn: Button
     private lateinit var changeAvatarBtn: Button
-    private lateinit var cameraBtn: Button
+    private lateinit var cameraBtn: ImageButton
 
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
@@ -74,6 +70,7 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
 
         auth = FirebaseAuth.getInstance()
         database = Firebase.database.reference
+
 
         //Get all of user info
         database.addValueEventListener(object : ValueEventListener {
@@ -117,6 +114,8 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
         changeAvatarBtn = findViewById(R.id.change_avatar_btn)
         cameraBtn = findViewById(R.id.camera_btn)
 
+        requestCameraPermission()
+
         closeBtn.setOnClickListener {
             val intent = Intent(this@EditProfile, Menu::class.java)
             startActivity(intent)
@@ -134,7 +133,7 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
         //Open camera
         cameraBtn.setOnClickListener(View.OnClickListener {
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intent, 101)
+            startActivityForResult(intent, 100)
         })
         // Uploads the currently selected img to the database
         updateBtn.setOnClickListener(View.OnClickListener {
@@ -147,22 +146,11 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 100 && resultCode == RESULT_OK){
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            avatar.setImageBitmap(imageBitmap)
+            val image = data?.extras?.get("data") as Bitmap
+            avatar.setImageBitmap(image)
+            //Picasso.get().load(image).into(avatar)
         }
     }
-    // You can do the assignment inside onAttach or onCreate, i.e, before the activity is displayed
-    var someActivityResultLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult(),
-        ActivityResultCallback<ActivityResult?> {
-            fun onActivityResult(result: ActivityResult) {
-                if (result.resultCode == Activity.RESULT_OK) {
-                    // There are no request codes
-                    val imageBitmap = result.data as Bitmap
-                    avatar.setImageBitmap(imageBitmap)
-                }
-            }
-        })
 
 
     /**
@@ -191,11 +179,11 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
         if(hasCameraPermissions()){
             return
         }
-        EasyPermissions.requestPermissions(this, "you need camera permission", 100, android.Manifest.permission.CAMERA)
+        EasyPermissions.requestPermissions(this, "You need camera permission", 100, android.Manifest.permission.CAMERA)
     }
     private fun hasCameraPermissions()= EasyPermissions.hasPermissions(this, android.Manifest.permission.CAMERA)
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
