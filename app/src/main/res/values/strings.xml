@@ -31,4 +31,7 @@
     <string name="statsPlays">Plays\n%1$s</string>
 
     <string name="leaderboardMaxStreak">Max streak: %1$d</string>
+
+    <string name="creditsCastellet">Made in INS Castellet</string>
+    <string name="creditsCreators">Made by\nJoel Ferrer &amp; Jan Pérez\n\nwith the collaboration of our classmates and teacher</string>
 </resources>
