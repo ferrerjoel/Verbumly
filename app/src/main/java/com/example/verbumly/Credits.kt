@@ -9,6 +9,7 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.example.verbumly.fragments.LogoFragment
 import com.example.verbumly.fragments.NamesFragment
+import androidx.activity.OnBackPressedCallback
 import java.util.*
 
 const val DELAY_TIME_FRAGMENTS = 3000L
@@ -18,6 +19,21 @@ class Credits : AppCompatActivity() {
 
     private lateinit var backButton: Button
     private lateinit var pizzaButton: Button
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        timer.cancel()
+    }
+
+    /**
+     * This callback is called when the user tries to return using it's phone back button, this way we can ensure the timer is closed and that there aren't any "fragment bucles" when trying to return
+     */
+    private val backCallback = object : OnBackPressedCallback(true /* enabled by default */) {
+        override fun handleOnBackPressed() {
+            timer.cancel()
+            finish()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +61,7 @@ class Credits : AppCompatActivity() {
         }
 
         timer.scheduleAtFixedRate(TimeTask(), DELAY_TIME_FRAGMENTS, DELAY_TIME_FRAGMENTS)
+        onBackPressedDispatcher.addCallback(this, backCallback)
     }
 
     private inner class TimeTask : TimerTask() {
