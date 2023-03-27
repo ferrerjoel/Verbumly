@@ -1,64 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".EditProfile"
-    android:background="@color/gray_200"
-    tools:viewBindingIgnore="true" >
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/user_avatar"
-        android:layout_width="150sp"
-        android:layout_height="150sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75sp"
-        android:src="@drawable/no_profile_user"
-        app:civ_border_color="@color/cian_200"
-        app:civ_border_width="2sp"/>
-
-    <TextView
-        android:id="@+id/uname"
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:layout_marginTop="15sp"
-        android:textAlignment="center"
-        android:fontFamily="@font/lemonmilk"
-        android:textSize="30sp"/>
-
-    <LinearLayout
-        android:id="@+id/topBtn"
-        android:layout_width="match_parent"
+    android:background="@color/teal_200"
+    >
+    <ImageButton
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginTop="239dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/change_avatar_btn"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Change Avatar"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <ImageButton
-            android:id="@+id/camera_btn"
-            android:layout_width="0dp"
+        android:backgroundTint="@color/teal_200"
+        android:src="@drawable/back_arrow" />
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:layout_gravity="center|center_vertical"
+        android:background="@color/teal_200">
+        <TextView
+            android:id="@+id/uname"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:textColor="@color/gray_200"
+            android:fontFamily="@font/lemonmilk"
+            android:textSize="30sp"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_gravity="center"
+            android:id="@+id/user_avatar"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="6dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/cian_200"
-            android:src="@drawable/camera_icon" />
+            android:src="@drawable/no_profile_user"
+            app:civ_border_color="@color/cian_200"
+            app:civ_border_width="2sp"/>
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_edit_profile"
+        android:orientation="vertical"
+        android:elevation="9dp">
+
+        <LinearLayout
+            android:id="@+id/topBtn"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/change_avatar_btn"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Gallery"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/camera_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/cian_200"
+                android:src="@drawable/camera_icon" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="13dp"
+                android:textColor="@color/teal_200"
+                android:fontFamily="@font/lemonmilk"
+                android:text="Mail"/>
+            <TextView
+                android:id="@+id/mail"
+                android:layout_width="match_parent"
+                android:layout_height="55sp"
+                android:textSize="20sp"
+                android:textColor="@color/teal_200"
+                android:fontFamily="@font/lemonmilk"
+                android:textAlignment="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_margin="20dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="13dp"
+                    android:textColor="@color/teal_200"
+                    android:fontFamily="@font/lemonmilk"
+                    android:text="Plays"/>
+                <TextView
+                    android:id="@+id/plays"
+                    android:layout_width="match_parent"
+                    android:layout_height="81sp"
+                    android:textSize="30sp"
+                    android:layout_marginTop="8sp"
+                    android:fontFamily="@font/lemonmilk"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_margin="20dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="13dp"
+                    android:textColor="@color/teal_200"
+                    android:fontFamily="@font/lemonmilk"
+                    android:text="Current Streak"/>
+                <TextView
+                    android:id="@+id/curr_streak"
+                    android:layout_width="match_parent"
+                    android:layout_height="81sp"
+                    android:textSize="30sp"
+                    android:layout_marginTop="8sp"
+                    android:fontFamily="@font/lemonmilk"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+    <!--<LinearLayout
         android:id="@+id/botBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,15 +170,6 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-        <Button
-            android:id="@+id/btn_close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="6sp"
-            android:layout_weight="1"
-            android:text="Close"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_update"
@@ -101,13 +192,7 @@
         android:layout_marginTop="400sp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/mail"
-            android:layout_width="match_parent"
-            android:layout_height="55sp"
-            android:textSize="20sp"
-            android:fontFamily="@font/lemonmilk"
-            android:textAlignment="center"/>
+
 
         <TextView
             android:id="@+id/plays"
@@ -136,7 +221,7 @@
             android:fontFamily="@font/lemonmilk"
             android:textAlignment="center"/>
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 
-</RelativeLayout>
+</LinearLayout>

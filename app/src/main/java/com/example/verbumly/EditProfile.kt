@@ -8,10 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -38,7 +35,7 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
     private lateinit var mStreak: TextView
     private lateinit var plays: TextView
     private lateinit var avatar: CircleImageView
-    private lateinit var closeBtn: Button
+    private lateinit var closeBtn: ImageButton
     private lateinit var updateBtn: Button
     private lateinit var changeAvatarBtn: Button
     private lateinit var cameraBtn: ImageButton
@@ -149,6 +146,7 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
         // Uploads the currently selected img to the database
         updateBtn.setOnClickListener(View.OnClickListener {
             uploadImage(uid)
+            Toast.makeText(this,"Updated photo", Toast.LENGTH_SHORT).show()
         })
 
     }
