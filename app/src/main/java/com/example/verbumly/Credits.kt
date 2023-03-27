@@ -1,20 +1,23 @@
 package com.example.verbumly
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.widget.ImageButton
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.example.verbumly.fragments.LogoFragment
 import com.example.verbumly.fragments.NamesFragment
 import java.util.*
 
+const val DELAY_TIME_FRAGMENTS = 3000L
 class Credits : AppCompatActivity() {
 
     var timer = Timer()
 
-    private lateinit var backButton: ImageButton
+    private lateinit var backButton: Button
+    private lateinit var pizzaButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,20 +29,26 @@ class Credits : AppCompatActivity() {
             addToBackStack("replacement")
         }
 
-        backButton = findViewById(R.id.imageButton)
-
-        
+        backButton = findViewById(R.id.backButton)
+        pizzaButton = findViewById(R.id.pizzaButton)
 
         backButton.setOnClickListener() {
             timer.cancel()
             finish()
         }
 
-        timer.scheduleAtFixedRate(TimeTask(),3000L,3000L)
+        pizzaButton.setOnClickListener() {
+            val uri: Uri =
+                Uri.parse("https://www.paypal.com/paypalme/ferrerjoel")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
+
+        timer.scheduleAtFixedRate(TimeTask(), DELAY_TIME_FRAGMENTS, DELAY_TIME_FRAGMENTS)
     }
 
     private inner class TimeTask : TimerTask() {
-        private var loadNamesFragment: Boolean = false;
+        private var loadNamesFragment: Boolean = false
         override fun run() {
             if (loadNamesFragment) {
                 supportFragmentManager.commit {

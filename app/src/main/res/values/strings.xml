@@ -34,4 +34,6 @@
 
     <string name="creditsCastellet">Made in INS Castellet</string>
     <string name="creditsCreators">Made by\nJoel Ferrer &amp; Jan Pérez\n\nwith the collaboration of our classmates and teacher</string>
+    <string name="donate_button">Buy me a pizza slice</string>
+    <string name="return_to_menu">Return to menu</string>
 </resources>
