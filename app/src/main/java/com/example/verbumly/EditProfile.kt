@@ -3,7 +3,6 @@ package com.example.verbumly
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -41,7 +40,6 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
     private lateinit var cameraBtn: ImageButton
 
     private lateinit var topButtons : LinearLayout
-    private lateinit var botButtons : LinearLayout
 
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
@@ -68,7 +66,8 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
         plays = findViewById(R.id.plays)
 
         topButtons = findViewById(R.id.topBtn)
-        botButtons = findViewById(R.id.botBtn)
+        updateBtn = findViewById(R.id.btn_update)
+        closeBtn = findViewById(R.id.close_btn)
 
         auth = FirebaseAuth.getInstance()
         database = Firebase.database.reference
@@ -78,7 +77,8 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
             uid = auth.uid!!
         }else{
             topButtons.visibility = View.GONE
-            botButtons.visibility = View.GONE
+            updateBtn.visibility = View.GONE
+            closeBtn.visibility = View.GONE
         }
         //Get all of user info
         database.addValueEventListener(object : ValueEventListener {
@@ -95,9 +95,9 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
 
                 uname.text = username
                 mail.text = email
-                cStreak.text = getString(R.string.statsCurrStreak, currStreak.toString())
-                mStreak.text = getString(R.string.statsMaxStreak, maxStreak.toString())
-                plays.text = getString(R.string.statsPlays, playerPlays.toString())
+                cStreak.text = currStreak.toString()
+                mStreak.text = maxStreak.toString()
+                plays.text = playerPlays.toString()
 
             }
 
@@ -111,14 +111,12 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
         avatar = findViewById<CircleImageView>(R.id.user_avatar)
 
         // Load the image using Picasso
-        stRefUrl.child("avatars/" + uid).downloadUrl.addOnSuccessListener {
+        stRefUrl.child("avatars/$uid").downloadUrl.addOnSuccessListener {
             Picasso.get().load(it).into(avatar)
         }.addOnFailureListener {
             Log.d("DEBUG", "The user doesn't have an image")
         }
 
-        closeBtn = findViewById(R.id.btn_close)
-        updateBtn = findViewById(R.id.btn_update)
         changeAvatarBtn = findViewById(R.id.change_avatar_btn)
         cameraBtn = findViewById(R.id.camera_btn)
 

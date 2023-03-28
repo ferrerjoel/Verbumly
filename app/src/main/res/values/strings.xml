@@ -25,10 +25,6 @@
     <string name="popupPlayAgain">Play again</string>
     <string name="popupReturn">Return to menu</string>
     <string name="levelSelectionLength">Select the length of the word</string>
-    <string name="statsMail">%1$s</string>
-    <string name="statsCurrStreak">Current Streak\n%1$s</string>
-    <string name="statsMaxStreak">Max Streak\n%1$s</string>
-    <string name="statsPlays">Plays\n%1$s</string>
 
     <string name="leaderboardMaxStreak">Max streak: %1$d</string>
 
@@ -36,4 +32,10 @@
     <string name="creditsCreators">Made by\nJoel Ferrer &amp; Jan Pérez\n\nwith the collaboration of our classmates and teacher</string>
     <string name="donate_button">Buy me a pizza slice</string>
     <string name="return_to_menu">Return to menu</string>
+    <string name="max_streak">Max Streak</string>
+    <string name="gallery">Gallery</string>
+    <string name="mail">Mail</string>
+    <string name="plays">Plays</string>
+    <string name="current_streak">Current Streak</string>
+    <string name="update">Update</string>
 </resources>
