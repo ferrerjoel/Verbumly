@@ -10,23 +10,27 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/gray_100">
 
         <ImageView
             android:id="@+id/playerPhoto"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="Player photo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/black"
-            android:contentDescription="Player photo" />
+            tools:background="@color/black" />
 
         <TextView
             android:id="@+id/playerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/lemonmilk"
+            android:textColor="@color/cian_200"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/playerPhoto"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Romanof" />
@@ -35,10 +39,14 @@
             android:id="@+id/playerMaxStreak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/lemonmilk"
+            android:textColor="@color/cian_200"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/playerPhoto"
             app:layout_constraintTop_toBottomOf="@+id/playerName"
+            app:layout_constraintVertical_bias="0.0"
             tools:text="17" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
