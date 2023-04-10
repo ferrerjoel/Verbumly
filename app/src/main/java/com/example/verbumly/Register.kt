@@ -92,7 +92,6 @@ class Register : AppCompatActivity() {
         if (user != null) {
             val uidString: String = user.uid
             val mailString: String = mailEt.text.toString()
-            val passString: String = passEt.text.toString()
             val nameString: String = nameEt.text.toString()
             val dateString: String = dateTv.text.toString()
 
@@ -105,7 +104,6 @@ class Register : AppCompatActivity() {
 
             playerData["Uid"] = uidString
             playerData["Email"] = mailString
-            playerData["Password"] = passString
             playerData["Name"] = nameString
             playerData["Date"] = dateString
             playerData["Stats"] = playerStats
