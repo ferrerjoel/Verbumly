@@ -38,7 +38,7 @@ class PlayerViewHolder(view: View, private val leaderboardContext: Context) :
         }
 
         playerPhoto.setOnClickListener() {
-            Toast.makeText(playerPhoto.context, playerName.text, Toast.LENGTH_LONG).show()
+            // Toast.makeText(playerPhoto.context, playerName.text, Toast.LENGTH_LONG).show()
             val levelIntent = Intent(leaderboardContext, EditProfile::class.java)
             levelIntent.putExtra("UID", player.uid)
             leaderboardContext.startActivity(levelIntent)

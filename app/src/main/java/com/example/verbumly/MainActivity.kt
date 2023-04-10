@@ -28,13 +28,13 @@ class MainActivity : AppCompatActivity() {
         btnLogin.setOnClickListener(){
             val intent= Intent(this, Login::class.java)
             startActivity(intent)
-            Toast.makeText(this, "Login button clicked", Toast.LENGTH_LONG).show()
+            // Toast.makeText(this, "Login button clicked", Toast.LENGTH_LONG).show()
         }
 
         btnRegister.setOnClickListener(){
             val intent= Intent(this, Register::class.java)
             startActivity(intent)
-            Toast.makeText(this, "Register button clicked",Toast.LENGTH_LONG).show()
+            // Toast.makeText(this, "Register button clicked",Toast.LENGTH_LONG).show()
 
         }
 

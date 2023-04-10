@@ -65,13 +65,13 @@ class Login : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val tx = "Welcome back $email"
-                    Toast.makeText(this, tx, Toast.LENGTH_LONG).show()
+                    // Toast.makeText(this, tx, Toast.LENGTH_LONG).show()
                     val user = auth.currentUser
                     updateUI(user)
                 } else {
-                    Toast.makeText(
-                        this, "Auth error", Toast.LENGTH_LONG
-                    ).show()
+//                    Toast.makeText(
+//                        this, "Auth error", Toast.LENGTH_LONG
+//                    ).show()
                 }
             }
 

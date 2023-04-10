@@ -32,23 +32,23 @@ class Menu : AppCompatActivity() {
         playBtn =findViewById<Button>(R.id.playBtn)
 
         creditsBtn.setOnClickListener(){
-            Toast.makeText(this,"Credits", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this,"Credits", Toast.LENGTH_SHORT).show()
             startActivity((Intent(this, Credits::class.java)))
         }
         scoreBtn.setOnClickListener(){
-            Toast.makeText(this,"Score", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this,"Score", Toast.LENGTH_SHORT).show()
             startActivity((Intent(this, EditProfile::class.java)))
         }
         leaderboardBtn.setOnClickListener(){
-            Toast.makeText(this, "Leaderboard", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Leaderboard", Toast.LENGTH_SHORT).show()
             startActivity((Intent(this, Leaderboard::class.java)))
         }
         playBtn.setOnClickListener(){
-            Toast.makeText(this,"Play", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this,"Play", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, LevelSelection::class.java))
         }
         logoutBtn.setOnClickListener(){
-            Toast.makeText(this,"Logout", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this,"Logout", Toast.LENGTH_SHORT).show()
             logout()
         }
 
@@ -77,8 +77,8 @@ class Menu : AppCompatActivity() {
     {
         if (user !=null)
         {
-            Toast.makeText(this,"Player logged"+ user!!.displayName,
-                Toast.LENGTH_SHORT).show()
+            // Toast.makeText(this,"Player logged"+ user!!.displayName,
+            //    Toast.LENGTH_SHORT).show()
         }
         else
         {
