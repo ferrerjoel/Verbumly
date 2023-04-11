@@ -79,6 +79,7 @@ class EditProfile : AppCompatActivity(), EasyPermissions.PermissionCallbacks{
             topButtons.visibility = View.GONE
             updateBtn.visibility = View.GONE
             closeBtn.visibility = View.GONE
+            findViewById<LinearLayout>(R.id.mailBox).visibility = View.GONE
         }
         //Get all of user info
         database.addValueEventListener(object : ValueEventListener {

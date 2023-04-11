@@ -80,6 +80,7 @@
                     android:src="@drawable/camera_icon" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/mailBox"
                 android:orientation="vertical"
                 android:padding="10dp"
                 android:layout_marginTop="20dp"
